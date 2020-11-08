@@ -18,6 +18,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/indexx',function(){
-    return view('backend.layout.master');
-});
+// Route::get('/indexx',function(){
+//     return view('backend.layout.master');
+// });
+
+// Route::get('/list',function(){
+//     return view('backend.Food.list');
+// });
+
+Route::get('/danhsach','FoodController@listFood')->name('listFood');
+Route::get('/getDS','FoodController@getDS')->name('getDS');
