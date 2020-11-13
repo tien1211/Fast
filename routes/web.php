@@ -23,8 +23,17 @@ Route::get('/', function () {
 // });
 
 // Route::get('/list',function(){
-//     return view('backend.Food.list');
-// });
+//     return view('backend.Food.ds');
+// })->name('danhsach');
 
-Route::get('/danhsach','FoodController@listFood')->name('listFood');
-Route::get('/getDS','FoodController@getDS')->name('getDS');
+
+
+// Route::get('/danhsach','FoodController@listFood')->name('list');
+// Route::get('/getDS','FoodController@getDS')->name('getDS');
+
+
+
+Route::get('/ds','FoodController@index')->name('listFood');
+Route::post('/create','FoodController@addFood')->name('addFood');
+Route::get('/edit','FoodController@editFood')->name('editFood');
+Route::delete('/del','FoodController@delFood')->name('delFood');

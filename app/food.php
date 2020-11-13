@@ -16,6 +16,7 @@ class food extends Model
         'name_food',
         'desc_food',
         'price_food',
+        'preprice_food',
         'state_food'
     ];
 
