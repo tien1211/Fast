@@ -59,12 +59,7 @@ class FoodController extends Controller
 
 
 
-    // public function editFood($id){
-        
-    //     $food = food::find($id);
-
-    //     return response()->json($food);
-    // }
+   
     public function editFood(Request $request){
         
         $food = food::find($request->id_food);
@@ -74,9 +69,13 @@ class FoodController extends Controller
 
 
     public function delFood(Request $request){
-        $food = food::find($request->id)->delete();
+       
+        $food = food::find($request->id_food);
+        
+        $food->delete();
         return response()->json(['success'=>'Deleted Successfully!!!']);
     }
+    
 
     
 

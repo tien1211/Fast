@@ -91,7 +91,7 @@
                 <div class="form-group">
                      <label class="col-sm-2 control-label">Description</label>
                      <div class="col-sm-12">
-                         <textarea id="detail" id="desc_food" name="desc_food" required="" placeholder="Enter Details" class="form-control"></textarea>
+                         <textarea  id="desc_food" name="desc_food" required="" placeholder="Enter Details" class="form-control"></textarea>
                      </div>
                 </div>
 
@@ -185,7 +185,7 @@
         });
      
         $('body').on('click', '.editProduct', function () {
-      var id_food = $(this).data('id');
+        var id_food = $(this).data('id');
           $.get("{{ route('editFood') }}",{ id_food: id_food }, function (data) {
           console.log(data);
           $('#modelHeading').html("Edit Product");
@@ -228,15 +228,20 @@
     $('body').on('click', '.deleteProduct', function () {
      
      var id_food = $(this).data("id");
-     console.log(id_food);
      confirm("Are You sure want to delete !");
    
      $.ajax({
          type: "DELETE",
-         url: "{{ route('delFood') }}"+'/'+id_food,
+         url: "{{route('delFood')}}",
+         data: {
+          id_food: id_food
+         },
+
          success: function (data) {
              table.ajax.reload();
+             
          },
+         
          error: function (data) {
              console.log('Error:', data);
          }
