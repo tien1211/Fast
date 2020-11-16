@@ -173,8 +173,8 @@
             ajax: "{{ route('listFood') }}",
             columns: [         
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'id_cate', name: 'food.id_cate'},
-                {data: 'id_dis', name: 'food.id_dis'},
+                {data: 'category', name: 'category.name_cate'},
+                {data: 'discount', name: 'discount.content_dis'},
                 {data: 'name_food', name: 'food.name_food'},
                 {data: 'price_food', name: 'food.price_food'},
                 {data: 'preprice_food', name: 'food.preprice_food'},

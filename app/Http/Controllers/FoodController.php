@@ -49,10 +49,12 @@ class FoodController extends Controller
                     })
                     ->rawColumns(['action'])
                     
-                    ->editColumn('discount', function($data)
-                          {
-                             return $data->discount->content_dis;
-                          })
+                    ->addColumn('discount',function(food $food){
+                        return $food->discount->content_dis;
+                    })
+                    ->addColumn('category',function(food $food){
+                        return $food->category->name_cate;
+                    })
                     ->make(true);
         }
       
