@@ -4,10 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\food;
+use App\category;
+use App\discount;
 use Yajra\DataTables\DataTables;
 
 class FoodController extends Controller
+
 {
+    function __construct(){
+        $category = category::all();
+        $discount = discount::all();
+
+        view()->share('category',$category);
+        view()->share('discount',$discount);
+
+    }
+
+    
     public function getDS(){
         return Datatables::of(food::query())->make(true);
     }
@@ -25,6 +38,7 @@ class FoodController extends Controller
             $data = food::latest()->get();
             return Datatables::of($data)
                     ->addIndexColumn()
+                    
                     ->addColumn('action', function($row){
    
                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_food.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
@@ -34,6 +48,11 @@ class FoodController extends Controller
                             return $btn;
                     })
                     ->rawColumns(['action'])
+                    
+                    ->editColumn('discount', function($data)
+                          {
+                             return $data->discount->content_dis;
+                          })
                     ->make(true);
         }
       

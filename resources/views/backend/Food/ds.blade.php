@@ -61,7 +61,14 @@
                 <div class="form-group">
                      <label for="name" class="col-sm-2 control-label">Category</label>
                      <div class="col-sm-12">
-                         <input type="text" class="form-control" id="id_cate"  name="id_cate" placeholder="Enter Name" value="" maxlength="50" required="">
+                         <select required  class="form-control m-bot15"  name="id_cate" id="id_cate">
+                          <option value="">Choice Category...</option>
+                          @foreach ($category as $sl_cate)
+                          @if ($sl_cate->state_cate == 1)
+                          <option value='{{$sl_cate->id_cate}}'>{{$sl_cate->name_cate}}</option>
+                          @endif
+                          @endforeach
+                        </select>
                      </div>
                 </div>
             {{-- Loại thức ăn --}}
@@ -70,7 +77,14 @@
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">Discount</label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" id="id_dis"  name="id_dis" placeholder="Enter Name" value="" maxlength="50" required="">
+                  <select required  class="form-control m-bot15"  name="id_dis" id="id_dis">
+                    <option value="">Choice Discount...</option>
+                    @foreach ($discount as $sl_dis)
+                    @if ($sl_dis->state_dis == 1)
+                    <option value='{{$sl_dis->id_dis}}'>{{$sl_dis->content_dis}}</option>
+                    @endif
+                    @endforeach
+                  </select>
                 </div>
            </div>
 
@@ -227,9 +241,9 @@
      
     $('body').on('click', '.deleteProduct', function () {
      
-     var id_food = $(this).data("id");
-     confirm("Are You sure want to delete !");
-   
+    var id_food = $(this).data("id");
+   var ok= confirm("Are You sure want to delete !");
+    if(ok){
      $.ajax({
          type: "DELETE",
          url: "{{route('delFood')}}",
@@ -246,7 +260,12 @@
              console.log('Error:', data);
          }
      });
- });
+    }else{
+
+      return false;
+
+      }
+   });
 
 
   });
