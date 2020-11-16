@@ -20,17 +20,6 @@ class FoodController extends Controller
 
     }
 
-    
-    public function getDS(){
-        return Datatables::of(food::query())->make(true);
-    }
-
-    public function listFood()
-    {
-
-        return view('backend.Food.list');
-        
-    }
 
 
     public function index(Request $request){
@@ -50,15 +39,24 @@ class FoodController extends Controller
                     ->rawColumns(['action'])
                     
                     ->addColumn('discount',function(food $food){
-                        return $food->discount->content_dis;
+                        return $food->discount->topic_dis;
                     })
                     ->addColumn('category',function(food $food){
                         return $food->category->name_cate;
                     })
+
+                    ->addColumn('food',function(food $food){
+                        return number_format($food->price_food);
+                    })
+
+                    ->addColumn('food',function(food $food){
+                        return number_format($food->preprice_food);
+                    })
+                    
                     ->make(true);
         }
       
-        return view('backend.Food.ds');
+        return view('backend.Food.list');
 
     }
 

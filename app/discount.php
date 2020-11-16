@@ -11,6 +11,7 @@ class discount extends Model
     protected $primaryKey ='id_dis';
 
     protected $fillable = [
+        'topic_dis',
         'content_dis',
         'start_dis',
         'end_dis',

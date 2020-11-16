@@ -33,7 +33,22 @@ Route::get('/', function () {
 
 
 
-Route::get('/ds','FoodController@index')->name('listFood');
-Route::post('/create','FoodController@addFood')->name('addFood');
-Route::get('/edit','FoodController@editFood')->name('editFood');
-Route::delete('/del','FoodController@delFood')->name('delFood');
+// Route::get('/ds','FoodController@index')->name('listFood');
+// Route::post('/create','FoodController@addFood')->name('addFood');
+// Route::get('/edit','FoodController@editFood')->name('editFood');
+// Route::delete('/del','FoodController@delFood')->name('delFood');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    // FOOD
+    Route::group(['prefix' => 'food'], function () {
+        Route::get('/list','FoodController@index')->name('listFood');
+        Route::post('/create','FoodController@addFood')->name('addFood');
+        Route::get('/edit','FoodController@editFood')->name('editFood');
+        Route::delete('/del','FoodController@delFood')->name('delFood');
+    });
+    // CATEGORY
+    Route::group(['prefix' => 'category'], function () {
+        
+    });
+});

@@ -18,7 +18,7 @@
         Basic table
        </div>
        
-       <a class="btn btn-success" href="javascript:void(0)" id="createNewProduct"> Create New Product</a>
+       <a class="btn btn-success glyphicon glyphicon-plus" href="javascript:void(0)" title="Add" id="createNewProduct"> </a>
          
       
       <table class="table table-bordered data-table" id="listFood" ui-jq="footable">
@@ -27,10 +27,10 @@
               
                <th data-breakpoints="xs">ID</th>
                <th>Category</th>
-               <th>Discount</th>
+               <th>Discount (%)</th>
                <th>Name</th>
-               <th>Price</th>
-               <th>Preprice</th>
+               <th>Price (VND)</th>
+               <th>Preprice (VND)</th>
                <th>State</th>
                <th width="7rem">Action</th>
                
@@ -176,8 +176,8 @@
                 {data: 'category', name: 'category.name_cate'},
                 {data: 'discount', name: 'discount.content_dis'},
                 {data: 'name_food', name: 'food.name_food'},
-                {data: 'price_food', name: 'food.price_food'},
-                {data: 'preprice_food', name: 'food.preprice_food'},
+                {data: 'food', name: 'food.price_food'},
+                {data: 'food', name: 'food.preprice_food'},
                 {data: 'state_food', name: 'food.state_food'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],

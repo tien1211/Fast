@@ -12,13 +12,15 @@ class discountSeeder extends Seeder
     public function run()
     {
         $arr = [];
+        $faker =    Faker\Factory::create('vi_vn');
         $name = array('Christmas','Mừng Xuân','2-9 Quốc Khách','Trung Thu','Quốc Tế Phụ Nữ');
         $count = count($name);
         $start = array('2020-12-09','2020-12-20','2020-08-25','2020-09-01','2020-10-10');
         $end = array('2020-12-14','2021-01-01','2020-09-02','2020-09-13','2020-10-20');
         for($i = 0 ;$i < $count;$i++){
             array_push($arr,[
-                'content_dis'       => $name[$i],
+                'topic_dis'         => $name[$i],
+                'content_dis'       => $faker->numberBetween($min=1,$max=50), 
                 'start_dis'         => $start[$i],
                 'end_dis'           => $end[$i],
                 'state_dis'         => 1,
