@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\category;
+use App\discount;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-class CategoryController extends Controller
+class DiscountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,26 +14,31 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = category::latest()->get();
+            $data = discount::latest()->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     
                     ->addColumn('action', function($row){
    
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_cate.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_dis.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
    
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_cate.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_dis.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
     
                             return $btn;
                     })
-                    
-                    ->rawColumns(['action']) ->make(true);
-                }
-              
-                return view('backend.Category.list');
-        
-            }
-    
+                    ->rawColumns(['action'])
+
+                    ->addColumn('start_dis',function(discount $discount){
+                        return $discount->start_dis->format('d-m-Y');
+                    })
+                    ->addColumn('end_dis',function(discount $discount1){
+                        return $discount1->end_dis->format('d-m-Y');
+                    })
+                    ->make(true);
+        }
+      
+        return view('backend.Discount.list');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -53,10 +58,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        category::updateOrCreate(
-            ['id_cate'          => $request->id_cate],
-            ['name_cate'          => $request->name_cate,
-            'state_cate'       => 1]);
+        discount::updateOrCreate(
+            ['id_dis'          => $request->id_dis],
+            ['topic_dis'       => $request->topic_dis,
+            'content_dis'      => $request->content_dis,
+            'start_dis'        => $request->start_dis,
+            'end_dis'          => $request->end_dis,
+            'state_dis'        => 1]);
        
         return response()->json(['success'=> 'Saved Successfully!!']);
     }
@@ -80,9 +88,8 @@ class CategoryController extends Controller
      */
     public function edit(Request $request)
     {
-        $category = category::find($request->id_cate);
-        
-        return response()->json($category);
+        $discount = discount::find($request->id_dis);
+        return response()->json($discount);
     }
 
     /**
@@ -103,11 +110,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $category = category::find($request->id_cate);
-        
-        $category->delete();
-        return response()->json(['success'=>'Deleted Successfully!!!']);
+        //
     }
 }

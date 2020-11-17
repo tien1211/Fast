@@ -15,7 +15,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
        <div class="panel-heading">
-        Basic table
+        Food table
        </div>
        
        <a class="btn btn-success glyphicon glyphicon-plus" href="javascript:void(0)" title="Add" id="createNewProduct"> </a>
@@ -201,7 +201,7 @@
         $('body').on('click', '.editProduct', function () {
         var id_food = $(this).data('id');
           $.get("{{ route('editFood') }}",{ id_food: id_food }, function (data) {
-          console.log(data);
+          
           $('#modelHeading').html("Edit Product");
           $('#saveBtn').val("edit-user");
           $('#ajaxModel').modal('show');
@@ -242,7 +242,7 @@
     $('body').on('click', '.deleteProduct', function () {
      
     var id_food = $(this).data("id");
-   var ok= confirm("Are You sure want to delete !");
+    var ok= confirm("Are You sure want to delete !");
     if(ok){
      $.ajax({
          type: "DELETE",

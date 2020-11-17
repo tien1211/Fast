@@ -48,7 +48,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/del','FoodController@delFood')->name('delFood');
     });
     // CATEGORY
+
     Route::group(['prefix' => 'category'], function () {
-        
+        Route::get('/list','CategoryController@index')->name('listCate');
+        Route::post('/create','CategoryController@store')->name('addCate');
+        Route::get('/edit','CategoryController@edit')->name('editCate');
+        Route::delete('/del','CategoryController@destroy')->name('delCate');
+    });
+
+
+    Route::group(['prefix' => 'discount'], function () {
+        Route::get('/list','DiscountController@index')->name('listDis');
+        Route::post('/create','DiscountController@store')->name('addDis');
+        Route::get('/edit','DiscountController@edit')->name('editDis');
     });
 });
