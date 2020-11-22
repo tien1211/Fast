@@ -67,9 +67,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'store'], function () {
         Route::get('/list','StoreController@index')->name('listSto');
-        // Route::post('/create','StoreController@store')->name('addSto');
-        // Route::get('/edit','StoreController@edit')->name('editSto');
-        // Route::delete('/del', 'StoreController@destroy')->name('delSto');
+        Route::post('/create','StoreController@store')->name('addSto');
+        Route::get('/edit','StoreController@edit')->name('editSto');
+        Route::delete('/del', 'StoreController@destroy')->name('delSto');
     });
     Route::group(['prefix' => 'address'], function () {
         Route::get('/list','AddressController@index')->name('listAddress');

@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 use App\store;
-use DB;
+use App\address;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+
+
+    function __construct(){
+        $address = address::all();
+        
+
+        view()->share('address',$address);
+       
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,7 @@ class StoreController extends Controller
      */
     public function index(Request $request){
         if($request->ajax()){
-            $data = DB::table('store')->latest()->get();
+            $data = store::latest()->get();
             return Datatables::of($data)->addIndexColumn()
             ->addColumn('action', function($row){
    
@@ -25,7 +35,13 @@ class StoreController extends Controller
 
                 return $btn;
             })
-            ->rawColumns(['action'])->make(true);
+            ->rawColumns(['action'])
+            
+            ->addColumn('addressStreet',function(store $store){
+                return $store->address->number_address.' '.$store->address->street_address.', '.$store->address->district_address;
+            })
+            
+            ->make(true);
         }   
         return view('backend.Store.list');
     }
@@ -48,7 +64,13 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        store::updateOrCreate(
+            ['id_store'          => $request->id_store],
+            ['id_address'          => $request->id_address,
+            'name_store'           => $request->name_store,
+            'phone_store'        => $request->phone_store,
+            'state_store'       => 1]);
+        return response()->json(['success'=> 'Saved Successfully!!']);
     }
 
     /**
@@ -68,9 +90,11 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $store = store::find($request->id_store);
+        
+        return response()->json($store);
     }
 
     /**
@@ -91,8 +115,10 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $store = store::find($request->id_store);
+        $store->delete();
+        return response()->json(['success'=>'Deleted Successfully!!!']);
     }
 }

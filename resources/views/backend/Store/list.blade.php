@@ -40,7 +40,62 @@
        </div>
      </div>
    </div>
-   
+   <div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modelHeading"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form id="productForm" name="productForm" class="form-horizontal">
+                <input type="hidden" name="id_store" id="id_store">
+            {{-- Địa chỉ --}}
+                <div class="form-group">
+                     <label for="name" class="col-sm-2 control-label">Address</label>
+                     <select required  class="form-control m-bot15"  name="id_address" id="id_address">
+                      <option value="">Choice Discount...</option>
+                      @foreach ($address as $sl_addr)
+                      @if ($sl_addr->state_address == 1)
+                     <option value='{{$sl_addr->id_address}}'>{{$sl_addr->number_address}}  {{$sl_addr->street_address}}, {{$sl_addr->district_address}}</option>
+                      @endif
+                      @endforeach
+                    </select>
+                </div>
+            {{-- Địa chỉ --}}
+
+            {{-- Tên cửa hàng --}}
+                <div class="form-group">
+                     <label for="name" class="col-sm-2 control-label">Name</label>
+                     <div class="col-sm-12">
+                        <input type="text" class="form-control" id="name_store"  name="name_store" placeholder="Enter Name" value="" maxlength="50" required="">
+                     </div>
+                </div>
+            {{-- Tên cửa hàng --}}
+
+            {{-- Số phone --}}
+                <div class="form-group">
+                     <label for="name" class="col-sm-2 control-label">Phone </label>
+                     <div class="col-sm-12">
+                        <input type="text" class="form-control" id="phone_store"  name="phone_store" placeholder="Enter Name" maxlength="50" required="">
+                     </div>
+                </div>
+            {{-- Số phone --}}
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+  
+      </div>
+    </div>
+  </div>
 
 
 
@@ -66,11 +121,11 @@
             }
         });
 
-        $('.data-table').DataTable({
+        var table = $('.data-table').DataTable({
             ajax:"{{route('listSto')}}",
             columns: [
-                {data:'id_store'},
-                {data:'id_address'},
+                {data:'DT_RowIndex'},
+                {data:'addressStreet'},
                 {data:'name_store'},
                 {data:'phone_store'},
                 {data:'state_store'},
@@ -78,6 +133,78 @@
 
             ]
         });
+
+        $('#createNewProduct').click(function () {
+            $('#saveBtn').val("create-product");
+            $('#id_store').val('');
+            $('#productForm').trigger("reset");
+            $('#modelHeading').html("Create New Product");
+            $('#ajaxModel').modal('show');
+            
+        });
+
+        $('body').on('click', '.editProduct', function () {
+        var id_store = $(this).data('id');
+          $.get("{{ route('editSto') }}",{ id_store: id_store }, function (data) {
+          
+          $('#modelHeading').html("Edit Store");
+          $('#saveBtn').val("edit-user");
+          $('#ajaxModel').modal('show');
+          $('#id_store').val(data.id_store);
+          $('#id_address').val(data.id_address);
+          $('#name_store').val(data.name_store);
+          $('#phone_store').val(data.phone_store);
+      })
+   });
+
+        $('#saveBtn').click(function (e) {
+        e.preventDefault();
+        $(this).html('Sending..');
+    
+        $.ajax({
+          data: $('#productForm').serialize(),
+          url: "{{ route('addSto') }}",
+          type: "POST",
+          dataType: 'json',
+          success: function (data) {
+            $('#productForm').trigger("reset");
+            $('#ajaxModel').modal('hide');
+            table.ajax.reload();
+          },
+          error: function (data) {
+              console.log('Error:', data);
+              $('#saveBtn').html('Save Changes');
+          }
+      });
+    });
+
+    $('body').on('click', '.deleteProduct', function () {
+     
+     var id_store = $(this).data("id");
+     var ok= confirm("Are You sure want to delete !");
+     if(ok){
+      $.ajax({
+          type: "DELETE",
+          url: "{{route('delSto')}}",
+          data: {
+           id_store: id_store
+          },
+ 
+          success: function (data) {
+              table.ajax.reload();
+              
+          },
+          
+          error: function (data) {
+              console.log('Error:', data);
+          }
+      });
+     }else{
+ 
+       return false;
+ 
+       }
+    });
 
     });
 
