@@ -122,7 +122,6 @@
         $('body').on('click', '.editProduct', function () {
         var id_cate = $(this).data('id');
           $.get("{{ route('editCate') }}",{ id_cate: id_cate }, function (data) {
-         console.log(data);
           $('#modelHeading').html("Edit Category");
           $('#saveBtn').val("edit-category");
           $('#ajaxModel').modal('show');
@@ -148,7 +147,6 @@
             table.ajax.reload();
           },
           error: function (data) {
-            console.log('123132');
               console.log('Error:', data);
               $('#saveBtn').html('Save Changes');
           }

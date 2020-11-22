@@ -156,15 +156,16 @@
 
         $('body').on('click', '.editProduct', function () {
         var id_dis = $(this).data('id');
+        
           $.get("{{ route('editDis') }}",{ id_dis: id_dis }, function (data) {
           $('#modelHeading').html("Edit Discount");
           $('#saveBtn').val("edit-category");
           $('#ajaxModel').modal('show');
+          
           $('#id_dis').val(data.id_dis);
           $('#topic_dis').val(data.topic_dis);
           $('#content_dis').val(data.content_dis);
-
-          $('#start_dis').val("2013-01-08");
+          $('#start_dis').val(data.start_dis);
           $('#end_dis').val(data.end_dis);
           
       })
@@ -196,7 +197,33 @@
     });
 
 
+    $('body').on('click', '.deleteProduct', function () {
+     
+     var id_dis = $(this).data("id");
+     var ok= confirm("Are You sure want to delete !");
+     if(ok){
+      $.ajax({
+          type: "DELETE",
+          url: "{{route('delDis')}}",
+          data: {
+           id_dis: id_dis
+          },
  
+          success: function (data) {
+              table.ajax.reload();
+              
+          },
+          
+          error: function (data) {
+              console.log('Error:', data);
+          }
+      });
+     }else{
+ 
+       return false;
+ 
+       }
+    });
 
   });
 

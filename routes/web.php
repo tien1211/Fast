@@ -61,5 +61,21 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/list','DiscountController@index')->name('listDis');
         Route::post('/create','DiscountController@store')->name('addDis');
         Route::get('/edit','DiscountController@edit')->name('editDis');
+        Route::delete('/del', 'DiscountController@destroy')->name('delDis');
     });
+
+
+    Route::group(['prefix' => 'store'], function () {
+        Route::get('/list','StoreController@index')->name('listSto');
+        // Route::post('/create','StoreController@store')->name('addSto');
+        // Route::get('/edit','StoreController@edit')->name('editSto');
+        // Route::delete('/del', 'StoreController@destroy')->name('delSto');
+    });
+    Route::group(['prefix' => 'address'], function () {
+        Route::get('/list','AddressController@index')->name('listAddress');
+        Route::post('/create','DiscountController@store')->name('addDis');
+        Route::get('/edit','DiscountController@edit')->name('editDis');
+        Route::delete('/del', 'DiscountController@destroy')->name('delDis');
+    });
+
 });

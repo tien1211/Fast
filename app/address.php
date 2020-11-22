@@ -12,9 +12,8 @@ class address extends Model
 
     protected $fillable = [
         'number_address',
-        'commune(ward)_address',
+        'street_address',
         'district_address',
-        'province(city)_address',
         'state_address',
     ];
 
