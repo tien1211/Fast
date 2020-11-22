@@ -17,7 +17,7 @@ class AddressController extends Controller
         
             
         if ($request->ajax()) {
-            $data =  DB::table('address')->latest()->get();
+            $data =  address::latest()->get();
 
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -54,7 +54,13 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        address::updateOrCreate(
+            ['id_address'          => $request->id_address],
+            ['number_address'          => $request->number_address,
+            'street_address'           => $request->street_address,
+            'district_address'        => $request->district_address,
+            'state_address'       => 1]);
+        return response()->json(['success'=> 'Saved Successfully!!']);
     }
 
     /**
@@ -74,9 +80,11 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $address = address::find($request->id_address);
+        
+        return response()->json($address);
     }
 
     /**
@@ -97,8 +105,10 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $address = address::find($request->id_address);
+        $address->delete();
+        return response()->json(['success'=>'Deleted Successfully!!!']);
     }
 }

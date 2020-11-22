@@ -73,9 +73,9 @@ Route::group(['prefix' => 'admin'], function () {
     });
     Route::group(['prefix' => 'address'], function () {
         Route::get('/list','AddressController@index')->name('listAddress');
-        Route::post('/create','DiscountController@store')->name('addDis');
-        Route::get('/edit','DiscountController@edit')->name('editDis');
-        Route::delete('/del', 'DiscountController@destroy')->name('delDis');
+        Route::post('/create','AddressController@store')->name('addAddress');
+        Route::get('/edit','AddressController@edit')->name('editAddress');
+        Route::delete('/del', 'AddressController@destroy')->name('delAddress');
     });
 
 });

@@ -37,7 +37,67 @@
      </div>
    </div>
    
+   <div class="modal fade" id="ajaxModel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modelHeading"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form id="productForm" name="productForm" class="form-horizontal">
+                <input type="hidden" name="id_address" id="id_address">
+            
+          {{-- Số nhà --}}
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Number</label>
+              <div class="col-sm-12">
+                  <input type="number" class="form-control" id="number_address" min="1"  name="number_address" placeholder="Enter Name" value="" maxlength="50" required="">
+              </div>
+            </div>
+             {{-- Số nhà --}}
+            
 
+           {{-- Tên đường --}}
+           <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Street</label>
+              <div class="col-sm-12">
+                  <input type="text" class="form-control" id="street_address"  name="street_address" placeholder="Enter Name" value="" maxlength="50" required="">
+              </div>
+            </div>
+            {{-- Tên đường --}}
+
+
+
+            {{-- Quận --}}
+                <div class="form-group">
+                     <label class="col-sm-2 control-label">District</label>
+                     <div class="col-sm-12">
+                         <input type="text"  id="district_address" name="district_address" required="" placeholder="Enter Details" class="form-control"></input>
+                     </div>
+                </div>
+            {{-- Quận --}}
+
+               
+    
+
+            
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
+            </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+  
+      </div>
+    </div>
+  </div>
 @endsection
 
 
@@ -65,7 +125,7 @@
       
             ajax: "{{ route('listAddress') }}",
             columns: [         
-                {data: 'id_address'},
+                {data: 'DT_RowIndex'},
                 {data: 'number_address'},
                 {data: 'street_address'},
                 {data: 'district_address'},
@@ -75,18 +135,82 @@
             
         });
 
-        // $('.data-table').DataTable({
-        //     ajax:"{{route('listSto')}}",
-        //     columns: [
-        //         {data:'id_store'},
-        //         {data:'id_address'},
-        //         {data:'name_store'},
-        //         {data:'phone_store'},
-        //         {data:'state_store'},
-        //         {data: 'action', name: 'action', orderable: false, searchable: false},
+        $('#createNewProduct').click(function () {
+            $('#saveBtn').val("create-product");
+            $('#id_address').val('');
+            $('#productForm').trigger("reset");
+            $('#modelHeading').html("Create New Product");
+            $('#ajaxModel').modal('show');
+            
+        });
 
-        //     ]
-        // });
+        $('body').on('click', '.editProduct', function () {
+        var id_address = $(this).data('id');
+          $.get("{{ route('editAddress') }}",{ id_address: id_address }, function (data) {
+          
+          $('#modelHeading').html("Edit Address");
+          $('#saveBtn').val("edit-user");
+          $('#ajaxModel').modal('show');
+          $('#id_address').val(data.id_address);
+          $('#number_address').val(data.number_address);
+          $('#street_address').val(data.street_address);
+          $('#district_address').val(data.district_address);
+         
+      })
+   });
+
+
+        $('#saveBtn').click(function (e) {
+        e.preventDefault();
+        $(this).html('Sending..');
+    
+        $.ajax({
+          data: $('#productForm').serialize(),
+          url: "{{ route('addAddress') }}",
+          type: "POST",
+          dataType: 'json',
+          success: function (data) {
+            $('#productForm').trigger("reset");
+            $('#ajaxModel').modal('hide');
+            table.ajax.reload();
+          },
+          error: function (data) {
+              console.log('Error:', data);
+              $('#saveBtn').html('Save Changes');
+          }
+      });
+    });
+
+
+    $('body').on('click', '.deleteProduct', function () {
+     
+     var id_address = $(this).data("id");
+     var ok= confirm("Are You sure want to delete !");
+     if(ok){
+      $.ajax({
+          type: "DELETE",
+          url: "{{route('delAddress')}}",
+          data: {
+           id_address: id_address
+          },
+ 
+          success: function (data) {
+              table.ajax.reload();
+              
+          },
+          
+          error: function (data) {
+              console.log('Error:', data);
+          }
+      });
+     }else{
+ 
+       return false;
+ 
+       }
+    });
+
+        
 
 
   });
