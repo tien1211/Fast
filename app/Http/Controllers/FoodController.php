@@ -39,7 +39,7 @@ class FoodController extends Controller
                     ->rawColumns(['action'])
                     
                     ->addColumn('discount',function(food $food){
-                        return $food->discount->topic_dis;
+                        return $food->discount->content_dis.'% '.$food->discount->topic_dis;
                     })
                     ->addColumn('category',function(food $food){
                         return $food->category->name_cate;

@@ -27,7 +27,7 @@
               
                <th data-breakpoints="xs">ID</th>
                <th>Category</th>
-               <th>Discount (%)</th>
+               <th>Discount</th>
                <th>Name</th>
                <th>Price (VND)</th>
                <th>Preprice (VND)</th>

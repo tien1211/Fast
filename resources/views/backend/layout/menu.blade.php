@@ -9,21 +9,16 @@
                 </a>
             </li>
             
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span>UI Elements</span>
+            <li>
+                <a href="{{route('listFood')}}">
+                    <i class="fa fa-bullhorn"></i>
+                    <span>FOOD </span>
                 </a>
-                <ul class="sub">
-                    <li><a href="typography.html">Typography</a></li>
-                    <li><a href="glyphicon.html">glyphicon</a></li>
-                    <li><a href="grids.html">Grids</a></li>
-                </ul>
             </li>
             <li>
-                <a href="fontawesome.html">
+                <a href="{{route('listCate')}}">
                     <i class="fa fa-bullhorn"></i>
-                    <span>Font awesome </span>
+                    <span>CATEGORY</span>
                 </a>
             </li>
             <li class="sub-menu">
