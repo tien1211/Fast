@@ -18,6 +18,8 @@ class CreateFoodstoreTable extends Migration
             $table->unsignedInteger('id_store');
             $table->primary(['id_food','id_store']);
             $table->timestamps();
+
+            
             $table->foreign('id_food')->references('id_food')->on('food')
                 ->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('id_store')->references('id_store')->on('store')

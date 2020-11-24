@@ -8,11 +8,11 @@ class foodstore extends Model
 {
     protected $table = 'foodstore';
     
-    protected $primaryKey =['id_del','id_store'];
+    protected $primaryKey =['id_food','id_store'];
 
+   
+    public $incrementing = false;
     
-
-    protected $guarded = ['*'];
     const     CREATED_AT    = 'created_at';
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at'];

@@ -18,26 +18,6 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/indexx',function(){
-//     return view('backend.layout.master');
-// });
-
-// Route::get('/list',function(){
-//     return view('backend.Food.ds');
-// })->name('danhsach');
-
-
-
-// Route::get('/danhsach','FoodController@listFood')->name('list');
-// Route::get('/getDS','FoodController@getDS')->name('getDS');
-
-
-
-// Route::get('/ds','FoodController@index')->name('listFood');
-// Route::post('/create','FoodController@addFood')->name('addFood');
-// Route::get('/edit','FoodController@editFood')->name('editFood');
-// Route::delete('/del','FoodController@delFood')->name('delFood');
-
 
 Route::group(['prefix' => 'admin'], function () {
     // FOOD
@@ -71,11 +51,25 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/edit','StoreController@edit')->name('editSto');
         Route::delete('/del', 'StoreController@destroy')->name('delSto');
     });
+
     Route::group(['prefix' => 'address'], function () {
         Route::get('/list','AddressController@index')->name('listAddress');
         Route::post('/create','AddressController@store')->name('addAddress');
         Route::get('/edit','AddressController@edit')->name('editAddress');
         Route::delete('/del', 'AddressController@destroy')->name('delAddress');
+    });
+
+    Route::group(['prefix' => 'foodstore'], function () {
+        Route::get('/list','FoodStoreController@index')->name('listFStore');
+        // Route::post('/create','FoodStoreController@store')->name('addft');
+        // Route::get('/edit','FoodStoreController@edit')->name('editft');
+        // Route::delete('/del', 'FoodStoreController@destroy')->name('delft');
+    });
+    Route::group(['prefix' => 'delivery'], function () {
+        Route::get('/list','DeliveryController@index')->name('listDel');
+        Route::post('/create','DeliveryController@store')->name('addDel');
+        Route::get('/edit','DeliveryController@edit')->name('editDel');
+        Route::delete('/del', 'DeliveryController@destroy')->name('delDel');
     });
 
 });
