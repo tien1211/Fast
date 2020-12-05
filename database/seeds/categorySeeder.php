@@ -17,6 +17,7 @@ class categorySeeder extends Seeder
         for($i = 0; $i< $cate1; $i++){
             array_push($arr, [
                 'name_cate'=> $cate[$i],
+                'img_cate'  => 'cate'.$i,
                 'state_cate' => 1,
                 ]);
         }

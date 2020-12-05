@@ -63,6 +63,8 @@ class FoodController extends Controller
 
 
     public function addFood(Request $request){
+        
+        
         food::updateOrCreate(
             ['id_food'          => $request->id_food],
             ['id_cate'          => $request->id_cate,

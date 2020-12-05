@@ -23,7 +23,10 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
+
+        
         if($request->ajax()){
             $data = store::latest()->get();
             return Datatables::of($data)->addIndexColumn()

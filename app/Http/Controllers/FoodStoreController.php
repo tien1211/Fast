@@ -15,7 +15,7 @@ class FoodStoreController extends Controller
      */
     public function index(Request $request)
     {
-
+        
         if ($request->ajax()) {
             $data = DB::table('foodstore')->latest()->get();
 
@@ -32,7 +32,7 @@ class FoodStoreController extends Controller
                     })
                     ->rawColumns(['action'])
 
-                   
+                    
                     ->make(true);
         }
       

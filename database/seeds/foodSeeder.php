@@ -22,7 +22,7 @@ class foodSeeder extends Seeder
         $pric_sw   = $faker->numberBetween($min = 30000,$max = 40000);
         $pric_dr   = $faker->numberBetween($min = 15000,$max = 30000);
         $pric_cb   = $faker->numberBetween($min = 150000,$max = 300000);
-
+        $temp =1;
         for($i=0;$i<count($sandw);$i++){
             array_push($arr,[
                 'id_cate'       =>  1,
@@ -31,6 +31,7 @@ class foodSeeder extends Seeder
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_sw,
                 'preprice_food' =>  $pric_sw - 3000,
+                'img_food'      =>  'SW'.$i,
                 'state_food'    =>  1
             ]);
         }
@@ -43,6 +44,7 @@ class foodSeeder extends Seeder
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr,
                 'preprice_food' =>  $pric_dr - 3000,
+                'img_food'      =>  'DR'.$j,
                 'state_food'    =>  1
             ]);
         }
@@ -56,6 +58,7 @@ class foodSeeder extends Seeder
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr,
                 'preprice_food' =>  $pric_dr - 3000,
+                'img_food'      =>  'DS'.$k,
                 'state_food'    =>  1
             ]);
         }
@@ -69,6 +72,7 @@ class foodSeeder extends Seeder
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr,
                 'preprice_food' =>  $pric_dr - 3000,
+                'img_food'      =>  'FF'.$l,
                 'state_food'    =>  1
             ]);
         }
@@ -80,6 +84,7 @@ class foodSeeder extends Seeder
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr,
                 'preprice_food' =>  $pric_dr - 3000,
+                'img_food'      =>  'SL'.$v,
                 'state_food'    =>  1
             ]);
         }
@@ -91,6 +96,7 @@ class foodSeeder extends Seeder
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_cb,
                 'preprice_food' =>  $pric_cb - 15000,
+                'img_food'      =>  'CB'.$cb,
                 'state_food'    =>  1
             ]);
         }

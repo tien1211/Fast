@@ -21,6 +21,7 @@ class CreateFoodTable extends Migration
             $table->text('desc_food')->nullable();
             $table->float('price_food');
             $table->float('preprice_food')->nullable();
+            $table->string('img_food');
             $table->tinyInteger('state_food');            
             $table->timestamps();
             $table->foreign('id_cate')->references('id_cate')->on('category')

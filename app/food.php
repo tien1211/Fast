@@ -17,6 +17,7 @@ class food extends Model
         'desc_food',
         'price_food',
         'preprice_food',
+        'img_food',
         'state_food'
     ];
 
@@ -35,10 +36,10 @@ class food extends Model
         return $this->belongsTo('App\category', 'id_cate', 'id_cate');
     }
 
-    public function store()
-    {
-        return $this->belongsToMany('App\store', 'foodstore', 'id_food', 'id_store');
-    } 
+    // public function store()
+    // {
+    //     return $this->belongsToMany('App\store', 'foodstore', 'id_food', 'id_store')->using('App\foodstore');
+    // } 
     
 
     public function foodstore()

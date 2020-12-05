@@ -65,8 +65,8 @@
         var table = $('.data-table').DataTable({
             ajax:"{{route('listFStore')}}",
             columns: [
-              {data:'id_store'},
-                {data:'id_food'},
+              {data:'nameStore'},
+                {data:'nameFood'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
 
             ]

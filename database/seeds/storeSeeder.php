@@ -20,6 +20,7 @@ class storeSeeder extends Seeder
                 'id_address'        =>    $faker->unique()->numberBetween($min = 1, $max = 5),
                 'name_store'        =>   $name[$i],
                 'phone_store'       =>    $faker->phoneNumber,
+                'img_store'         =>      'store'.$i,
                 'state_store'       =>1
             ]);
         }

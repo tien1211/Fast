@@ -18,6 +18,7 @@ class CreateStoreTable extends Migration
             $table->unsignedInteger('id_address');
             $table->string('name_store');
             $table->string('phone_store');
+            $table->string('img_store');
             $table->tinyInteger('state_store');
             $table->timestamps();
             $table->foreign('id_address')->references('id_address')->on('address')

@@ -14,6 +14,7 @@ class store extends Model
         'id_address',
         'name_store',
         'phone_store',
+        'img_store',
         'state_store'
     ];
 
@@ -28,10 +29,10 @@ class store extends Model
         return $this->belongsTo('App\address', 'id_address', 'id_address');
     }
 
-    public function food()
-    {
-        return $this->belongsToMany('App\food', 'foodstore', 'id_food', 'id_store');
-    } 
+    // public function food()
+    // {
+    //     return $this->belongsToMany('App\food', 'foodstore', 'id_store', 'id_food')->using('App\foodstore');
+    // } 
 
     public function foodstore()
     {

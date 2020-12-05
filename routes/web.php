@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/login',function(){
+    return view('frontend.view.login');
 });
+Route::get('/index','IndexController@getIndex')->name('index');
+
+Route::get('/category/{id}','IndexController@getCategoryPages')->name('categoryPages');
+Route::get('/product/{id}','IndexController@getProductPages')->name('productPages');
+
 
 
 
