@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-class emp extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+class emp extends Authenticatable
 {
     protected $table = 'emp';
     
@@ -25,6 +26,8 @@ class emp extends Model
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at','birth_emp'];
 
+    
+
 
     public function rate()
     {
@@ -37,5 +40,9 @@ class emp extends Model
     public function comment()
     {
         return $this->hasMany('App\comment', 'id_emp', 'id_emp');
+    }
+
+    public function getAuthPassword(){
+        return $this->password;
     }
 }

@@ -24,17 +24,34 @@ Route::get('/index','IndexController@getIndex')->name('index');
 
 Route::get('/category/{id}','IndexController@getCategoryPages')->name('categoryPages');
 Route::get('/product/{id}','IndexController@getProductPages')->name('productPages');
+Route::get('/cart','IndexController@getCartPage')->name('cartPage');
+
+Route::get('/signinPage','AuthController@getSignIn')->name('signInPages');
+Route::post('/signin','AuthController@signIn')->name('signIn');
+Route::get('/signout','AuthController@signOut')->name('signOut');
 
 
 
 
 Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('/dashboard',function(){
+        return view('backend.layout.master');
+    })->name('indexAdmin');
     // FOOD
     Route::group(['prefix' => 'food'], function () {
         Route::get('/list','FoodController@index')->name('listFood');
         Route::post('/create','FoodController@addFood')->name('addFood');
         Route::get('/edit','FoodController@editFood')->name('editFood');
         Route::delete('/del','FoodController@delFood')->name('delFood');
+    });
+
+    //MEMBER
+    Route::group(['prefix' => 'member'], function () {
+        Route::get('/list','MemberController@index')->name('listMember');
+        Route::post('/create','MemberController@store')->name('addMem');
+        Route::get('/edit','MemberController@edit')->name('editMem');
+        Route::delete('/del','MemberController@destroy')->name('delMem');
     });
     // CATEGORY
 

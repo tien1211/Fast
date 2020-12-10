@@ -12,7 +12,7 @@ class categorySeeder extends Seeder
     public function run()
     {
         $arr = [];
-        $cate = array('Sandwich','Nước giải khát','Tráng miệng','Thức ăn nhanh','Salad','Compo');
+        $cate = array('Sandwich','Nước giải khát','Tráng miệng','Thức ăn nhanh','Salad','Combo');
         $cate1=count($cate);
         for($i = 0; $i< $cate1; $i++){
             array_push($arr, [

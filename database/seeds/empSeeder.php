@@ -14,7 +14,7 @@ class empSeeder extends Seeder
         $faker = Faker\Factory::create('vi_VN');
         $arr = [];
         $gender = array(0,1);
-        $per = array(0,1);
+        $per = array(0,1,2);
         $state = array(0,1);
         
         array_push($arr,[

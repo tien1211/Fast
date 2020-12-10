@@ -68,6 +68,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
+        'users' => [
+            'driver' => 'eloquent',
             'model' => App\emp::class,
         ],
 
@@ -98,6 +103,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'emp' => [
+            'provider' => 'emp',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

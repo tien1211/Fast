@@ -16,6 +16,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('listMember')}}">
+                    <i class="fa fa-bullhorn"></i>
+                    <span>MEMBER</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('listCate')}}">
                     <i class="fa fa-bullhorn"></i>
                     <span>CATEGORY</span>

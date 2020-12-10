@@ -51,9 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!-- //market-->
 		@yield('content')
 					
-</section>
- @include('backend.layout.footer')
-</section>
+
 <!--main content end-->
 </section>
 <script src="backend/js/bootstrap.js"></script>
