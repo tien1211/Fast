@@ -80,10 +80,14 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+
+        
+
+
         emp::updateOrCreate(
             ['id_emp'          => $request->id_emp],
             ['username'        => $request->username,
-            'password'         => $request->password,
+            'password'         => bcrypt($request->password),
             'name_emp'         => $request->name_emp,
             'birth_emp'        => $request->birth_emp,
             'gender_emp'       => $request->gender_emp,

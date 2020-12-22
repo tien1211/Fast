@@ -24,13 +24,35 @@ Route::get('/index','IndexController@getIndex')->name('index');
 
 Route::get('/category/{id}','IndexController@getCategoryPages')->name('categoryPages');
 Route::get('/product/{id}','IndexController@getProductPages')->name('productPages');
-Route::get('/cart','IndexController@getCartPage')->name('cartPage');
+Route::get('/getComment/{id}','IndexController@getComment')->name('getComment');
+
 
 Route::get('/signinPage','AuthController@getSignIn')->name('signInPages');
 Route::post('/signin','AuthController@signIn')->name('signIn');
 Route::get('/signout','AuthController@signOut')->name('signOut');
 
+Route::get('/cart','CartController@getCart')->name('cartPage');
+Route::post('/addCart','CartController@addCart')->name('addCart');
+Route::post('/updateCart','CartController@updateCart')->name('updateCart');
+Route::get('/delCart','CartController@deleteCart')->name('delCart');
+Route::get('/storeCart','CartController@storeCart')->name('storeCart');
 
+Route::get('/wishlist','WishlistController@getWishList')->name('wishlistPage');
+Route::post('/addWishList','WishlistController@addWishList')->name('addWishList');
+Route::get('/delWishList','WishlistController@deleteWishList')->name('deleteWishList');
+
+
+
+Route::get('/commentRate','CmtRatingController@getCommentRating')->name('listCmtRating');
+
+
+Route::post('/comment','CmtRatingController@postCmtRating')->name('commentPost');
+
+
+Route::get('/delcomment/{id}','CmtRatingController@delComment')->name('delComment');
+Route::post('/upcomment/{id}','CmtRatingController@upComment')->name('upComment');
+
+Route::post('/upRating','CmtRatingController@postRating')->name('rating');
 
 
 Route::group(['prefix' => 'admin'], function () {

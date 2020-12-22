@@ -1,11 +1,13 @@
 <?php
 
 namespace App;
-
+// use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
 
 class food extends Model
 {
+    // use Rateable;
+    
     protected $table = 'food';
     
     protected $primaryKey ='id_food';

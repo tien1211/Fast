@@ -18,7 +18,7 @@ class comment extends Model
         'state_cmt'
     ];
 
-    protected $guarded = ['*'];
+    protected $guarded = ['id_cmt'];
     const     CREATED_AT    = 'created_at';
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at'];
@@ -30,6 +30,10 @@ class comment extends Model
     }
     public function emp()
     {
-        return $this->belongsTo('App\emp', 'id_food', 'id_food');
+        return $this->belongsTo('App\emp', 'id_emp', 'id_emp');
+    }
+
+    public function replies() {
+        return $this->hasMany('App\comment', 'idfather_cmt','id_cmt');
     }
 }

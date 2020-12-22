@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <base href="{{asset('')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="frontend/images/logo/f.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
@@ -27,6 +29,11 @@
     <link rel="stylesheet" href="frontend/css/flaticon.css">
     <link rel="stylesheet" href="frontend/css/icomoon.css">
     <link rel="stylesheet" href="frontend/css/style.css">
+
+
+
+
+    
   </head>
   <body class="goto-here">
 
@@ -78,7 +85,7 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+   
 
   <script src="frontend/js/jquery.min.js"></script>
   <script src="frontend/js/jquery-migrate-3.0.1.min.js"></script>
@@ -93,13 +100,19 @@
   <script src="frontend/js/jquery.animateNumber.min.js"></script>
   <script src="frontend/js/bootstrap-datepicker.js"></script>
   <script src="frontend/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  {{-- <script src="frontend/js/google-map.js"></script> --}}
   <script src="frontend/js/main.js"></script>
 
+    <script>
+      function loadCountCart($value){
+        $('#cart').text($value);
+      }
 
+      function loadCountWishList($value){
+        $('#wishlist').text($value);
+      }
+    </script>
 
-  
+  @yield('script')
     
   </body>
 </html>

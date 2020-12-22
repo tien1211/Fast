@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <base href="{{asset('')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="frontend/images/logo/f.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
@@ -28,6 +30,8 @@
     <link rel="stylesheet" href="frontend/css/flaticon.css">
     <link rel="stylesheet" href="frontend/css/icomoon.css">
     <link rel="stylesheet" href="frontend/css/style.css">
+@yield('comment')
+@yield('rating')
   </head>
   <body class="goto-here">
     @include('frontend.layout.header')
@@ -59,5 +63,46 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   {{-- <script src="frontend/js/google-map.js"></script> --}}
   <script src="frontend/js/main.js"></script>
+  <script>
+    function loadCountCart($value){
+      $('#cart').text($value);
+    }
+    function loadCountWishList($value){
+      $('#wishlist').text($value);
+    }
+  </script>
+  <script>
+    $(document).ready(function(){
+
+    var quantitiy=0;
+       $('.quantity-right-plus').click(function(e){
+            
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+            // If is not undefined
+                $('#quantity').val(quantity + 1); 
+                // Increment
+            
+        });
+
+         $('.quantity-left-minus').click(function(e){
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+            
+            // If is not undefined
+          
+                // Increment
+                if(quantity>0){
+                $('#quantity').val(quantity - 1);
+                }
+        });
+        
+    });
+</script>
+  @yield('script')
   </body>
 </html>

@@ -44,13 +44,15 @@
                         </div>
                         <div class="bottom-area d-flex px-3">
                             <div class="m-auto d-flex">
-                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                <a href="{{route('productPages',['id'=>$ff->id_food])}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                     <span><i class="ion-ios-menu"></i></span>
                                 </a>
-                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                    <span><i class="ion-ios-cart"></i></span>
+                            <a href="javascript:void(0);" data-id="{{$ff->id_food}}" class="addcart buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart "></i></span>
                                 </a>
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+
+                                
+                                <a href="javascript:void(0);" data-id="{{$ff->id_food}}" class="heart d-flex justify-content-center align-items-center " >
                                     <span><i class="ion-ios-heart"></i></span>
                                 </a>
                             </div>
@@ -67,4 +69,60 @@
 
 @endsection
 
+
+@section('script')
+
+
+
+    <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+   
+
+        $('.addcart').click(function (e) {
+            e.preventDefault();
+   
+            $.ajax({
+                url: "{{route('addCart')}}",
+                method:"POST",
+                data:{
+                    id_food : $(this).data('id')
+                }
+            }).done(function(data){
+                loadCountCart(data.count)
+                alert(data.success);
+            }).error(function(e){
+                
+            });
+        
+         });
+
+
+        $('.heart').click(function (e) {
+            e.preventDefault();
+   
+            $.ajax({
+                url: "{{route('addWishList')}}",
+                method:"POST",
+                data:{
+                    id_food : $(this).data('id')
+                }
+            }).done(function(data){
+                loadCountWishList(data.count)
+                alert(data.success);
+            }).error(function(e){
+                console.log(e);
+            });
+        
+         });
+
+    </script>
+
+
+@endsection
 

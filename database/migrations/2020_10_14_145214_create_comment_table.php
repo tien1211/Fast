@@ -17,12 +17,13 @@ class CreateCommentTable extends Migration
             $table->increments('id_cmt');
             $table->unsignedInteger('id_food');
             $table->unsignedInteger('id_emp');
-            $table->integer('idfather_cmt');
+            $table->unsignedInteger('idfather_cmt')->nullable();
             $table->text('content_cmt');
             $table->tinyInteger('state_cmt');
             $table->timestamps();
             $table->foreign('id_food')->references('id_food')->on('food')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('id_emp')->references('id_emp')->on('emp')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('idfather_cmt')->references('id_cmt')->on('comment')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
