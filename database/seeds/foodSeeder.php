@@ -29,8 +29,8 @@ class foodSeeder extends Seeder
                 'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
                 'name_food'     =>  $sandw[$i],
                 'desc_food'     =>  '',
-                'price_food'    =>  $pric_sw,
-                'preprice_food' =>  $pric_sw - 3000,
+                'price_food'    =>  $pric_sw-3000,
+                'preprice_food' =>  $pric_sw,
                 'img_food'      =>  'SW'.$i,
                 'state_food'    =>  1
             ]);
@@ -42,8 +42,8 @@ class foodSeeder extends Seeder
                 'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
                 'name_food'     =>  $drink[$j],
                 'desc_food'     =>  '',
-                'price_food'    =>  $pric_dr,
-                'preprice_food' =>  $pric_dr - 3000,
+                'price_food'    =>  $pric_dr - 3000,
+                'preprice_food' =>  $pric_dr,
                 'img_food'      =>  'DR'.$j,
                 'state_food'    =>  1
             ]);
@@ -56,8 +56,8 @@ class foodSeeder extends Seeder
                 'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
                 'name_food'     =>  $desert[$k],
                 'desc_food'     =>  '',
-                'price_food'    =>  $pric_dr,
-                'preprice_food' =>  $pric_dr - 3000,
+                'price_food'    =>  $pric_dr - 3000,
+                'preprice_food' =>  $pric_dr,
                 'img_food'      =>  'DS'.$k,
                 'state_food'    =>  1
             ]);
@@ -70,8 +70,8 @@ class foodSeeder extends Seeder
                 'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
                 'name_food'     =>  $ff[$l],
                 'desc_food'     =>  '',
-                'price_food'    =>  $pric_dr,
-                'preprice_food' =>  $pric_dr - 3000,
+                'price_food'    =>  $pric_dr - 3000,
+                'preprice_food' =>  $pric_dr,
                 'img_food'      =>  'FF'.$l,
                 'state_food'    =>  1
             ]);
@@ -82,8 +82,8 @@ class foodSeeder extends Seeder
                 'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
                 'name_food'     =>  $salad[$v],
                 'desc_food'     =>  '',
-                'price_food'    =>  $pric_dr,
-                'preprice_food' =>  $pric_dr - 3000,
+                'price_food'    =>  $pric_dr - 3000,
+                'preprice_food' =>  $pric_dr,
                 'img_food'      =>  'SL'.$v,
                 'state_food'    =>  1
             ]);
@@ -94,8 +94,8 @@ class foodSeeder extends Seeder
                 'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
                 'name_food'     =>  $combo[$cb],
                 'desc_food'     =>  '',
-                'price_food'    =>  $pric_cb,
-                'preprice_food' =>  $pric_cb - 15000,
+                'price_food'    =>  $pric_cb - 15000,
+                'preprice_food' =>  $pric_cb ,
                 'img_food'      =>  'CB'.$cb,
                 'state_food'    =>  1
             ]);

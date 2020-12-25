@@ -45,9 +45,7 @@ class IndexController extends Controller
 //Hiển thị số sao
 
         // $rate = DB::table('rate')->where([['id_emp',Auth::user()->id_emp],['id_food',$id]])->first();
-        
-        
-        
+      
         $food = food::find($id);
         //hiển thị bình luận
         $commentList = comment::where([['idfather_cmt', null],['id_food',$id]])->get();

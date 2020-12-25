@@ -15,7 +15,7 @@ class CreateDeliveryTable extends Migration
     {
         Schema::create('delivery', function (Blueprint $table) {
             $table->increments('id_del');
-            $table->tinyInteger('state_del');
+            $table->string('state_del');
             $table->timestamps();
         });
     }

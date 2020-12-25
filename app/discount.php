@@ -15,10 +15,10 @@ class discount extends Model
         'content_dis',
         'start_dis',
         'end_dis',
-        'state_dis'
+     
     ];
 
-    protected $guarded = ['*'];
+    // protected $guarded = ['*'];
     const     CREATED_AT    = 'created_at';
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at','start_dis', 'end_dis'];

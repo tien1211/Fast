@@ -64,32 +64,85 @@
                     </div>
               </div>
           </div>
-          <div class="row justify-content-end">
-              
+{{-- thông báo paypal --}}
+          @if ($message = Session::get('success'))
+
+          <div class="alert alert-success">
+            <strong>Success!</strong> {!! $message !!}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          </div>
+
+          {{-- <div class="w3-panel w3-green w3-display-container">
+              <span onclick="this.parentElement.style.display='none'"
+                      class="w3-button w3-green w3-large w3-display-topright">&times;</span>
+              <p>{!! $message !!}</p>
+          </div> --}}
+          <?php Session::forget('success');?>
+          @endif
+  
+          @if ($message = Session::get('error'))
+          {{-- <div class="w3-panel w3-red w3-display-container">
+              <span onclick="this.parentElement.style.display='none'"
+                      class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+              <p>{!! $message !!}</p>
+          </div> --}}
+
+          <div class="alert alert-danger">
+            <strong>Error!</strong> {!! $message !!}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+          <?php Session::forget('error');?>
+          @endif
+{{-- thông báo paypal --}}
+
+        <form action="{{route('payment')}}" method="POST" class="info">
+            @csrf
+            <div class="row justify-content-end">
+                <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                    <div class="cart-total mb-3">
+                        <h3>Customer Information</h3>
+                        <p>Enter your information and destination</p>
+                
+                            <div class="form-group">
+                                <label for="">Name</label>
+                                <input type="text" name="name_bill" class="form-control text-left px-3" required placeholder="EX: Hồng Anh Tiến">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Address</label>
+                                <input type="text" name="address_bill" class="form-control text-left px-3" required placeholder="EX: 3/2 Ninh Kiều, Thành Phố Cần Thơ">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Email</label>
+                                <input type="text" name="mail_bill" class="form-control text-left px-3" required placeholder="EX: tienb1607034@gmail.com">
+                            </div>
+                        
+                    </div>
+                </div>
              
-              <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-                  <div class="cart-total mb-3">
-                      <h3>Cart Totals</h3>
-                      <p class="d-flex">
-                          <span>Subtotal</span>
-                          <span class="subtotal">{{ Cart::subtotal() .' '. 'VNĐ' }}</span>
-                      </p>
-                      <p class="d-flex">
-                          <span>Delivery</span>
-                          <span>$0.00</span>
-                      </p>
-                      <p class="d-flex">
-                          <span>Discount</span>
-                          <span>$3.00</span>
-                      </p>
-                      <hr>
-                      <p class="d-flex total-price">
-                          <span>Total</span>
-                          <span class="subtotal">{{ Cart::subtotal() .' '. 'VNĐ' }}</span>
-                      </p>
-                  </div>
-                  <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-              </div>
+                <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                    <div class="cart-total mb-3">
+                        <h3>Cart Totals</h3>
+                        <p class="d-flex">
+                            <span>Subtotal</span>
+                            <span class="subtotal">{{ Cart::subtotal() .' '. 'VNĐ' }}</span>
+                        </p>
+                        <p class="d-flex">
+                            <span>Delivery</span>
+                            <span>$0.00</span>
+                        </p>
+                        <p class="d-flex">
+                            <span>Discount</span>
+                            <span>$3.00</span>
+                        </p>
+                        <hr>
+                        <p class="d-flex total-price">
+                            <span>Total</span>
+                            <span class="subtotal">{{ Cart::subtotal() .' '. 'VNĐ' }}</span>
+                        </p>
+                    </div>
+                        <p><button type="submit" name="submit" value="paypal" class="btn btn-primary py-3 px-4">Checkout with PayPal</button></p>
+                        <p><button type="submit"  name="submit" value="COD" class="btn btn-primary py-3 px-4">Checkout wid COD</button></p>
+                    </form>
+                </div>
           </div>
           </div>
       </section>
@@ -146,16 +199,6 @@
                 alert('thất bại')
         });
     });
-
-
-
-    
-
-
-
-
-
-    
       </script>
 
 

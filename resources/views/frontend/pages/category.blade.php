@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Featured Products</span>
-                <h2 class="mb-4">Our Products</h2>
+                <span class="subheading">Products</span>
+                <h2 class="mb-4">Store's Products</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
             </div>
         </div>   		
@@ -21,8 +21,15 @@
                 <div class="product">
                    
                     <a href="{{route('productPages',['id'=>$ff->id_food])}}" class="img-prod"><img class="img-fluid" src="frontend/images/{{$ff->img_food}}.jpg" alt="Colorlib Template">
-                    <span class="status">{{$ff->discount->content_dis}}%</span>
+                    @if ($ff->id_dis == 1)
+                            
+
+                    @else
+                    <span class="status">
+                        {{$ff->discount->content_dis}}%</span>
                         <div class="overlay"></div>
+                    @endif
+                        
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
                     <h3><a href="{{route('productPages',['id'=>$ff->id_food])}}">{{$ff->name_food}}</a></h3>
@@ -32,10 +39,10 @@
                                     @if ($ff->preprice_food == null)
                                     
                                     
-                                    <span class="price-sale">$80.00</span></p>    
+                                    <span class="price-sale">{{number_format($ff->price_food)}} VNĐ</span></p>    
                                     @else
-                                    <span class="mr-2 price-dc">$120.00</span>
-                                    <span class="price-sale">$80.00</span></p>
+                                    <span class="mr-2 price-dc">{{number_format($ff->preprice_food)}} VNĐ</span>
+                                    <span class="price-sale">{{number_format($ff->price_food)}} VNĐ</span></p>
                                     
                                     
                                     @endif

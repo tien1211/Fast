@@ -14,10 +14,13 @@ class bill extends Model
         'id_emp',
         'id_del',
         'date_bill',
-        'state_bill'
+        'name_bill',
+        'address_bill',
+        'mail_bill'
+        
     ];
 
-    protected $guarded = ['*'];
+    // protected $guarded = ['*'];
     const     CREATED_AT    = 'created_at';
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at'];

@@ -141,7 +141,7 @@
                             <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
                         </p> --}}
                             </div>
-                <p class="price"><span>$120.00</span></p>
+                <p class="price"><span class="price-dc">$120.00</span></p>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until.
                     </p>
             <div class="row mt-4">
@@ -205,89 +205,105 @@
 
 
 
-
-    <div class="post_ratings">
-   
-        <form id="addStar" action="{{route('rating')}}" method="POST">
-            @csrf
-            <input type="hidden" name="id_food" value="{{ $food->id_food }}">
-         <div class="rating_submit_inner">
-             <input id="radio1" type="radio" name="rating" value="5" class="star"/>
-             <label for="radio1">&#9733;</label>
-             <input id="radio2" type="radio" name="rating" value="4" class="star"/>
-             <label for="radio2">&#9733;</label>
-             <input id="radio3" type="radio" name="rating" value="3" class="star"/>
-             <label for="radio3">&#9733;</label>
-             <input id="radio4" type="radio" name="rating" value="2" class="star"/>
-             <label for="radio4">&#9733;</label>
-             <input id="radio5" type="radio" name="rating" value="1" class="star"/>
-             <label for="radio5">&#9733;</label>
-         </div>
-            {{-- <div class="rating_submit_wrap">
-                <button type="submit" class="btn btn-success" disabled>Login Plss</button>
-            </div> --}}
-        
-        </form>
-            
+@if (!isset($auth))
+<div class="post_ratings">
+       
+     <div class="rating_submit_inner" title="Required Login">
+         <input id="radio1" type="radio" name="rating" value="5" class="star"/>
+         <label for="radio1">&#9733;</label>
+         <input id="radio2" type="radio" name="rating" value="4" class="star"/>
+         <label for="radio2">&#9733;</label>
+         <input id="radio3" type="radio" name="rating" value="3" class="star"/>
+         <label for="radio3">&#9733;</label>
+         <input id="radio4" type="radio" name="rating" value="2" class="star"/>
+         <label for="radio4">&#9733;</label>
+         <input id="radio5" type="radio" name="rating" value="1" class="star"/>
+         <label for="radio5">&#9733;</label>
      </div>
-
+ </div>
+ @else
+ <div class="post_ratings">
+   
+    <form id="addStar" action="{{route('rating')}}" method="POST">
+        @csrf
+        <input type="hidden" name="id_food" value="{{ $food->id_food }}">
+     <div class="rating_submit_inner">
+         <input id="radio1" type="radio" name="rating" value="5" class="star"/>
+         <label for="radio1">&#9733;</label>
+         <input id="radio2" type="radio" name="rating" value="4" class="star"/>
+         <label for="radio2">&#9733;</label>
+         <input id="radio3" type="radio" name="rating" value="3" class="star"/>
+         <label for="radio3">&#9733;</label>
+         <input id="radio4" type="radio" name="rating" value="2" class="star"/>
+         <label for="radio4">&#9733;</label>
+         <input id="radio5" type="radio" name="rating" value="1" class="star"/>
+         <label for="radio5">&#9733;</label>
+     </div>
+       
+    
+    </form>
+        
+ </div>
+@endif
+    
+ 
     <div id="commentList" style="overflow-y: scroll; height: 20rem;">
-    @foreach ($comment as $item)
-    <div class="container1">
-        <h5>{{$item->emp->username}}</h5>
-        
-        <p>{{$item->content_cmt}}</p>
-        <span class="time-right">{{date(' H:m:s d-m-Y ',strtotime($item->created_at))}}</span>
-        <span><a href="#">Reply</a> &nbsp; &nbsp; 
-        <a href="{{route('delComment',['id'=>$item->id_cmt])}}">Delete</a> &nbsp; &nbsp; <a href="" data-toggle="modal" data-target="#myModal">Update</a></span>
-        @if ($item->replies->count() > 0)
-            @foreach ($item->replies as $rep)
-    </div>
-            <div class="container1" style="margin-left: 50px">
-                <h3>{{$rep->emp->username}}</h3>
-                
-                <p>{{$rep->content_cmt}}</p>
-                <span class="time-right">{{date(' H:m:s d-m-Y ',strtotime($rep->created_at))}}</span>
-            @endforeach
-        
-        @endif 
-            </div>
-
-
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                  
-                   
-                    <div class="modal-header">
-                      <h4 class="modal-title">Update comment of {{$item->emp->username}}</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
+        @foreach ($comment as $item)
+        <div class="container1">
+            <h5>{{$item->emp->username}}</h5>
+            
+            <p>{{$item->content_cmt}}</p>
+            <span class="time-right">{{date(' H:m:s d-m-Y ',strtotime($item->created_at))}}</span>
+            <span><a href="#">Reply</a> &nbsp; &nbsp; 
+            <a href="{{route('delComment',['id'=>$item->id_cmt])}}">Delete</a> &nbsp; &nbsp; <a href="" data-toggle="modal" data-target="#myModal">Update</a></span>
+            @if ($item->replies->count() > 0)
+                @foreach ($item->replies as $rep)
+        </div>
+                <div class="container1" style="margin-left: 50px">
+                    <h3>{{$rep->emp->username}}</h3>
                     
-                   
-                    <form action="{{route('upComment',['id'=>$item->id_cmt])}}" method="POST">
-                        @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <textarea name="content_cmt" cols="90" rows="7" class="form-control" placeholder="Message">{{$item->content_cmt}}</textarea>
-                          </div>
-                    </div>
-                    
-               
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Update Message</button>
-                        <button type="close" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-                  </div>
+                    <p>{{$rep->content_cmt}}</p>
+                    <span class="time-right">{{date(' H:m:s d-m-Y ',strtotime($rep->created_at))}}</span>
+                @endforeach
+            
+            @endif 
                 </div>
-              </div>
+
+
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                    
+                        <div class="modal-header">
+                        <h4 class="modal-title">Update comment of {{$item->emp->username}}</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                    
+                        <form action="{{route('upComment',['id'=>$item->id_cmt])}}" method="POST">
+                            @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <textarea name="content_cmt" cols="90" rows="7" class="form-control" placeholder="Message">{{$item->content_cmt}}</textarea>
+                            </div>
+                        </div>
+                        
+                
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Update Message</button>
+                            <button type="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                    </div>
+                    </div>
+                </div>
 
 
 
 
-    @endforeach
-   </div>
+        @endforeach
+    </div>
   
     <div class="row block-9">
         <div class="col-md-12 order-md-last d-flex">
@@ -343,7 +359,7 @@
                                 <a href="{{route('productPages',['id'=>$relF->id_food])}}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                     <span><i class="ion-ios-menu"></i></span>
                                 </a>
-                                <a href="javascript:void(0);" data-id="{{$relF->id_food}}" class="addcart buy-now d-flex justify-content-center align-items-center mx-1">
+                                <a href="javascript:void(0);" data-id="{{$relF->id_food}}" class="addcartR buy-now d-flex justify-content-center align-items-center mx-1">
                                     <span><i class="ion-ios-cart"></i></span>
                                 </a>
                                 <a href="javascript:void(0);" data-id="{{$relF->id_food}}" class="heart d-flex justify-content-center align-items-center ">
@@ -400,6 +416,14 @@ $('#saveBtn').click(function (e) {
 
 //loadcomment
 
+
+
+
+// $("#saveBtn").click(function(){
+//   $.ajax({url: "./getComment/"+"{{$food->id_f}}", success: function(result){
+//     $("#commentList").html(result);
+//   }});
+// });
 function showComment(str) {
   var xhttp;
   if (str == "") {
@@ -439,7 +463,26 @@ function showComment(str) {
                 console.log(e);
             });
         });
+
+
+
+        $('.addcartR').click(function (e) {
+            e.preventDefault();
+   
+            $.ajax({
+                url: "{{route('addCart')}}",
+                method:"POST",
+                data:{
+                    id_food : $(this).data('id')
+                }
+            }).done(function(data){
+                loadCountCart(data.count)
+                alert(data.success);
+            }).error(function(e){
+                alert("thất bại")
+            });
         
+         });  
 
 //wishlist
         $('.heart').click(function (e) {
@@ -476,9 +519,11 @@ $('#addStar').change('.star', function(e) {
     success: function(data) {
       console.log(data);
       alert(data.message);
-    }
+    },
+    
   }).error(function(e){
         console.log(e);
+        alert(e.message);
     });
 });
 

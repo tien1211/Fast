@@ -64,7 +64,7 @@ class DiscountController extends Controller
             'content_dis'      => $request->content_dis,
             'start_dis'        => $request->start_dis,
             'end_dis'          => $request->end_dis,
-            'state_dis'        => 1]);
+           ]);
        
         return response()->json(['success'=> 'Saved Successfully!!']);
     }

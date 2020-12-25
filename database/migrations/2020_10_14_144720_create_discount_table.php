@@ -17,9 +17,8 @@ class CreateDiscountTable extends Migration
             $table->increments('id_dis');
             $table->string('topic_dis');
             $table->integer('content_dis');
-            $table->date('start_dis');
-            $table->date('end_dis');
-            $table->tinyInteger('state_dis');
+            $table->date('start_dis')->nullable();
+            $table->date('end_dis')->nullable();
             $table->timestamps();
         });
     }

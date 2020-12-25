@@ -15,7 +15,7 @@ class billdetail extends Model
         'id_food',
         'qty_billdetail',
         'price_billdetail',
-        'state_billdetail',
+        
     ];
 
     protected $guarded = ['*'];

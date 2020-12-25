@@ -16,9 +16,9 @@ class CreateBilldetailTable extends Migration
         Schema::create('billdetail', function (Blueprint $table) {
             $table->unsignedInteger('id_food');
             $table->unsignedInteger('id_bill');
-            $table->float('qty_billdetail');
+            $table->integer('qty_billdetail');
             $table->integer('price_billdetail');
-            $table->tinyInteger('state_billdetail');
+            
             $table->primary(['id_food','id_bill']);
             $table->timestamps();
             $table->foreign('id_food')->references('id_food')->on('food')

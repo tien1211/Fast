@@ -13,46 +13,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::get('/login',function(){
-    return view('frontend.view.login');
-});
+// PAGE
 Route::get('/index','IndexController@getIndex')->name('index');
-
 Route::get('/category/{id}','IndexController@getCategoryPages')->name('categoryPages');
 Route::get('/product/{id}','IndexController@getProductPages')->name('productPages');
 Route::get('/getComment/{id}','IndexController@getComment')->name('getComment');
 
-
+// LOGIN
 Route::get('/signinPage','AuthController@getSignIn')->name('signInPages');
 Route::post('/signin','AuthController@signIn')->name('signIn');
 Route::get('/signout','AuthController@signOut')->name('signOut');
-
+// CART
 Route::get('/cart','CartController@getCart')->name('cartPage');
 Route::post('/addCart','CartController@addCart')->name('addCart');
 Route::post('/updateCart','CartController@updateCart')->name('updateCart');
 Route::get('/delCart','CartController@deleteCart')->name('delCart');
 Route::get('/storeCart','CartController@storeCart')->name('storeCart');
 
+// PAYMENT
+// Route::post('paypalPayment','PaymentController@payWithpaypal')->name('paypal');
+Route::post('paypalPayment','PaymentController@payment')->name('payment');
+Route::get('statusPayment','PaymentController@getPaymentStatus')->name('status');
+
+// WISHLISH
 Route::get('/wishlist','WishlistController@getWishList')->name('wishlistPage');
 Route::post('/addWishList','WishlistController@addWishList')->name('addWishList');
 Route::get('/delWishList','WishlistController@deleteWishList')->name('deleteWishList');
 
 
-
+// COMMENT
 Route::get('/commentRate','CmtRatingController@getCommentRating')->name('listCmtRating');
-
-
 Route::post('/comment','CmtRatingController@postCmtRating')->name('commentPost');
-
-
 Route::get('/delcomment/{id}','CmtRatingController@delComment')->name('delComment');
 Route::post('/upcomment/{id}','CmtRatingController@upComment')->name('upComment');
 
+// RATING
 Route::post('/upRating','CmtRatingController@postRating')->name('rating');
+
+
+
+
 
 
 Route::group(['prefix' => 'admin'], function () {

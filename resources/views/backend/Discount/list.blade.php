@@ -137,7 +137,6 @@
                 {data: 'content_dis', name: 'discount.content_dis'},
                 {data: 'start_dis', name: 'discount.start_dis'},
                 {data: 'end_dis', name: 'discount1.end_dis'},
-                {data: 'state_dis', name: 'discount.state_dis'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             

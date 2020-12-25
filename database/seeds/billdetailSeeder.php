@@ -21,7 +21,7 @@ class billdetailSeeder extends Seeder
                     'id_bill'           => $faker->numberBetween($min=1,$max=25),
                     'qty_billdetail'    => $faker->numberBetween($min=1,$max=6),
                     'price_billdetail'  => $faker->numberBetween($min=500000,$max=1000000),
-                    'state_billdetail'  => 1
+                   
                 ]);
             
             }

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="frontend/css/flaticon.css">
     <link rel="stylesheet" href="frontend/css/icomoon.css">
     <link rel="stylesheet" href="frontend/css/style.css">
+    
 @yield('comment')
 @yield('rating')
   </head>

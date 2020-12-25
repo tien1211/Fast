@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
+        "paypal/rest-api-sdk-php": "^1.14",
         "tightenco/ziggy": "^0.9.4",
         "willvincent/laravel-rateable": "^2.3",
         "yajra/laravel-datatables-oracle": "^9.13"

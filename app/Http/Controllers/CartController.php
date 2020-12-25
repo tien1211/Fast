@@ -20,6 +20,8 @@ class CartController extends Controller
 
     public function getCart(){
         $cartContent = Cart::instance('cart')->content();
+
+       
         return view('frontend.pages.cart')->with('cartContent',$cartContent);
         // return dd ($cart);
     }
