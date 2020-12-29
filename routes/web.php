@@ -19,6 +19,8 @@ Route::get('/index','IndexController@getIndex')->name('index');
 Route::get('/category/{id}','IndexController@getCategoryPages')->name('categoryPages');
 Route::get('/product/{id}','IndexController@getProductPages')->name('productPages');
 Route::get('/getComment/{id}','IndexController@getComment')->name('getComment');
+Route::get('/getProfile/{id}','IndexController@getProfile')->name('getProfile');
+Route::get('/getDetail/{id}','IndexController@getDetail')->name('getDetail');
 
 // LOGIN
 Route::get('/signinPage','AuthController@getSignIn')->name('signInPages');
@@ -35,6 +37,7 @@ Route::get('/storeCart','CartController@storeCart')->name('storeCart');
 // Route::post('paypalPayment','PaymentController@payWithpaypal')->name('paypal');
 Route::post('paypalPayment','PaymentController@payment')->name('payment');
 Route::get('statusPayment','PaymentController@getPaymentStatus')->name('status');
+Route::post('/cancle/{id}','PaymentController@custumerCancel')->name('cancelCus');
 
 // WISHLISH
 Route::get('/wishlist','WishlistController@getWishList')->name('wishlistPage');

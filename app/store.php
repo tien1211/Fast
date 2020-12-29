@@ -36,6 +36,6 @@ class store extends Model
 
     public function foodstore()
     {
-        return $this->hasMany('App\foodstore', 'id_store', 'id_store');
+        return $this->belongsToMany('App\food','foodstore' ,'id_store', 'id_food')->using('App\foodstore');
     }
 }

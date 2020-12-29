@@ -139,8 +139,16 @@
                             <span class="subtotal">{{ Cart::subtotal() .' '. 'VNĐ' }}</span>
                         </p>
                     </div>
+                        @if (Cart::instance('cart')->count()<1)
+                            
+                        @elseif (!isset($auth))
+                        <p><button onclick="return alert('Bạn chưa đăng nhập!!')" class="btn btn-primary py-3 px-4">Checkout with PayPal</button></p>
+                        <p><button onclick="return alert('Bạn chưa đăng nhập!!')"class="btn btn-primary py-3 px-4">Checkout with COD</button></p>
+                        @else
                         <p><button type="submit" name="submit" value="paypal" class="btn btn-primary py-3 px-4">Checkout with PayPal</button></p>
-                        <p><button type="submit"  name="submit" value="COD" class="btn btn-primary py-3 px-4">Checkout wid COD</button></p>
+                        <p><button type="submit"  name="submit" value="COD" class="btn btn-primary py-3 px-4">Checkout with COD</button></p>
+                        @endif
+                        
                     </form>
                 </div>
           </div>

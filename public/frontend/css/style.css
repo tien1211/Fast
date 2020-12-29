@@ -8014,7 +8014,7 @@ a {
   color: #82ae46; }
   a:hover, a:focus {
     text-decoration: none;
-    color: #82ae46; }
+    color: orange; }
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
@@ -8921,7 +8921,7 @@ h1, h2, h3, h4, h5,
   overflow-x: scroll; }
 
 .table {
-  min-width: 1000px !important;
+  /* min-width: 1000px !important; */
   width: 100%;
   text-align: center; }
   .table th {

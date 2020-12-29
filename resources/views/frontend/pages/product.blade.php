@@ -121,25 +121,19 @@
                 <h3>{{$food->name_food}}</h3>
                 <div class="rating d-flex">
                         <p class="text-left mr-4">
-                            
-                            {{-- @if ($rate != null)
-                            @for ($i = 1; $i <= $rate->number_rate; $i++)
-                            <a href="#"><span class="ion-ios-star-outline"></span></a>
-                            @endfor
-                            @endif --}}
-                            
-                            
-                            {{-- <a href="#"><span class="ion-ios-star-outline"></span></a>
+                            <a href="#"><span class="ion-ios-star" style="color: orange"></span></a>
                             <a href="#"><span class="ion-ios-star-outline"></span></a>
                             <a href="#"><span class="ion-ios-star-outline"></span></a>
-                            <a href="#"><span class="ion-ios-star-outline"></span></a> --}}
+                            
+                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                            <a href="#"><span class="ion-ios-star-outline"></span></a>
                         </p>
-                        {{-- <p class="text-left mr-4">
+                        <p class="text-left mr-4">
                             <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
                         </p>
                         <p class="text-left">
                             <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
-                        </p> --}}
+                        </p>
                             </div>
                 <p class="price"><span class="price-dc">$120.00</span></p>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until.
@@ -315,7 +309,7 @@
             </div>
 
             <div class="form-group">@if (!isset($auth))
-              <input type="submit" value="Login Pls!!! " class="btn btn-primary py-3 px-5" disabled>
+              <input onclick="return alert('Bạn chưa đăng nhập!!')" disabled value="Login Pls!!! " class="btn btn-primary py-3 px-5">
               @else
               <input type="submit" value="Send Message " id="saveBtn" onclick="showComment({{$food->id_food}})" class="btn btn-primary py-3 px-5">
               @endif

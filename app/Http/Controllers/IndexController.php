@@ -59,6 +59,42 @@ class IndexController extends Controller
         
     }
 
+    public function getProfile(Request $request,$id){
+        $infoMember = DB::table('emp')->where('id_emp',$id)->first(); 
+
+        $infoBill = DB::table('bill')
+        ->join('emp','emp.id_emp','=','bill.id_emp')
+        ->join('delivery','delivery.id_del','=','bill.id_del')
+        ->where('bill.id_emp',$id)->paginate(8);  
+        
+        
+        
+        $infoBillDetail = DB::table('bill')
+        ->join('emp','emp.id_emp','=','bill.id_emp')
+        ->join('billdetail','billdetail.id_bill','=','bill.id_bill')
+        ->join('food','food.id_food','=','billdetail.id_food')
+        ->where('bill.id_emp',$id)->get();   
+    // return dd($infoBill);
+
+
+        return view('frontend.pages.profile')->with('infoMember',$infoMember)
+        ->with('infoBill',$infoBill)
+        ->with('infoBillDetail',$infoBillDetail);
+    }
+
+
+    public function getDetail(Request $request, $id){
+        $infoMember = DB::table('emp')->where('id_emp',$id)->first(); 
+        $infoBillDetail = DB::table('bill')
+        ->join('emp','emp.id_emp','=','bill.id_emp')
+        ->join('billdetail','billdetail.id_bill','=','bill.id_bill')
+        ->join('food','food.id_food','=','billdetail.id_food')
+        ->where('bill.id_emp',$id)->get(); 
+        
+        return view('frontend.pages.detailBill')->with('infoBillDetail',$infoBillDetail);
+    }
+
+
     public function getComment(Request $request,$id){
         
             $food = food::find($id);
@@ -66,7 +102,6 @@ class IndexController extends Controller
             return view('frontend.pages.comment')
             ->with('comment',$commentList);
        
-        
     }
     
 

@@ -53,7 +53,7 @@
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$auth->name_emp}}</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="wishlist.html">Profile</a>
+              <a class="dropdown-item" href="{{route('getProfile',['id'=>$auth->id_emp])}}">Profile</a>
               <a class="dropdown-item" href="wishlist.html">Change Password</a>
             <a class="dropdown-item" href="{{route('signOut')}}">Sign out</a>
             </div>

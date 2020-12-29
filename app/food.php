@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class food extends Model
 {
-    // use Rateable;
+  
     
     protected $table = 'food';
     
-    protected $primaryKey ='id_food';
+    protected $primaryKey = 'id_food';
 
     protected $fillable = [
         'id_cate',
@@ -23,7 +23,7 @@ class food extends Model
         'state_food'
     ];
 
-    protected $guarded = ['*'];
+    protected $guarded = ['id_food'];
     const     CREATED_AT    = 'created_at';
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at'];
@@ -38,16 +38,6 @@ class food extends Model
         return $this->belongsTo('App\category', 'id_cate', 'id_cate');
     }
 
-    // public function store()
-    // {
-    //     return $this->belongsToMany('App\store', 'foodstore', 'id_food', 'id_store')->using('App\foodstore');
-    // } 
-    
-
-    public function foodstore()
-    {
-        return $this->hasMany('App\foodstore', 'id_food', 'id_food');
-    }
     public function comment()
     {
         return $this->hasMany('App\comment', 'id_food', 'id_food');
@@ -63,5 +53,10 @@ class food extends Model
     public function img()
     {
         return $this->hasMany('App\img', 'id_food', 'id_food');
+    }
+
+    public function foodstore()
+    {
+        return $this->belongsToMany('App\store','foodstore' ,'id_food', 'id_store')->using('App\foodstore');
     }
 }

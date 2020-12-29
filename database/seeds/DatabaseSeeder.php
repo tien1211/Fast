@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
 
 
         // $this->call(discountSeeder::class);
-        // $this->call(addressSeeder::class);
-        // $this->call(categorySeeder::class);
+        $this->call(addressSeeder::class);
+        $this->call(categorySeeder::class);
        
-        // $this->call(deliverySeeder::class);
-        // $this->call(empSeeder::class);
+        $this->call(deliverySeeder::class);
+        $this->call(empSeeder::class);
         // $this->call(billSeeder::class);
-        // $this->call(storeSeeder::class);
-        // $this->call(foodSeeder::class);
-        // $this->call(foodstoreSeeder::class);
-        // $this->call(imgSeeder::class);
-        $this->call(billdetailSeeder::class);
+        $this->call(storeSeeder::class);
+        $this->call(foodSeeder::class);
+        $this->call(foodstoreSeeder::class);
+        $this->call(imgSeeder::class);
+        // $this->call(billdetailSeeder::class);
         
 
     }
