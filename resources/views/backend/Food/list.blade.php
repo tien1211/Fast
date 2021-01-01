@@ -71,7 +71,7 @@
                         </select>
                      </div>
                 </div>
-            {{-- Loại thức ăn --}}
+           
 
             {{-- Khuyến mãi --}}
             <div class="form-group">
@@ -80,54 +80,54 @@
                   <select required  class="form-control m-bot15"  name="id_dis" id="id_dis">
                     <option value="">Choice Discount...</option>
                     @foreach ($discount as $sl_dis)
-                    @if ($sl_dis->state_dis == 1)
+                    
                     <option value='{{$sl_dis->id_dis}}'>{{$sl_dis->topic_dis}}</option>
-                    @endif
+                   
                     @endforeach
                   </select>
                 </div>
-           </div>
+            </div>
 
-           {{-- Khuyến mãi --}}
+           
 
            {{-- Tên sản phẩm --}}
-           <div class="form-group">
+          <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Name</label>
               <div class="col-sm-12">
                   <input type="text" class="form-control" id="name_food"  name="name_food" placeholder="Enter Name" value="" maxlength="50" required="">
               </div>
-            </div>
-            {{-- Tên sản phẩm --}}
+          </div>
+           
 
 
 
-            {{-- Mô tả --}}
-                <div class="form-group">
-                     <label class="col-sm-2 control-label">Description</label>
-                     <div class="col-sm-12">
-                         <textarea  id="desc_food" name="desc_food" required="" placeholder="Enter Details" class="form-control"></textarea>
-                     </div>
+      {{-- Mô tả --}}
+          <div class="form-group">
+                <label class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-12">
+                    <textarea  id="desc_food" name="desc_food" required="" placeholder="Enter Details" class="form-control"></textarea>
                 </div>
+          </div>
 
 
                 {{-- Giá sản phẩm --}}
-           <div class="form-group">
+          <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Price</label>
-              <div class="col-sm-12">
-                  <input type="text" class="form-control" id="price_food"  name="price_food" placeholder="Enter Name" value="" maxlength="50" required="">
-              </div>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="price_food"  name="price_food" placeholder="Enter Name" value="" maxlength="50" required="">
             </div>
-            {{-- Giá sản phẩm --}}
+          </div>
+            
 
             {{-- Giá củ --}}
-           <div class="form-group">
+          <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Price-old</label>
-              <div class="col-sm-12">
-                  <input type="text" class="form-control" id="preprice_food"  name="preprice_food" placeholder="Enter Name" value="" maxlength="50" required="">
-              </div>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="preprice_food"  name="preprice_food" placeholder="Enter Name" value="" maxlength="50" required="">
             </div>
-            {{-- Giá củ --}}
-    </div>
+          </div>
+            
+        </div>
 
             
 
@@ -137,7 +137,7 @@
             </button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
-    </form>
+        </form>
   
       </div>
     </div>
@@ -194,6 +194,7 @@
             $('#id_food').val('');
             $('#productForm').trigger("reset");
             $('#modelHeading').html("Create New Product");
+            // $('#img_food').val($(this).data('img_food'));
             $('#ajaxModel').modal('show');
             
         });

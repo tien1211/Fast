@@ -61,9 +61,14 @@ Route::post('/upRating','CmtRatingController@postRating')->name('rating');
 
 Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('/dashboard',function(){
-        return view('backend.layout.master');
-    })->name('indexAdmin');
+    // Route::get('/dashboard',function(){
+    //     return view('backend.layout.master');
+    // })->name('indexAdmin');
+    Route::get('/dashboard','ChartController@chart')->name('adminIndex');
+    Route::post('/dashboard-chart','ChartController@filter_by_date')->name('filterDay');
+    Route::post('/dashboard-filter','ChartController@dashboard_filter')->name('filterSelect');
+    Route::post('/dashboard-30day','ChartController@dashboard_show30day')->name('filter30day');
+
     // FOOD
     Route::group(['prefix' => 'food'], function () {
         Route::get('/list','FoodController@index')->name('listFood');
@@ -88,7 +93,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/del','CategoryController@destroy')->name('delCate');
     });
 
-
+    //Discount
     Route::group(['prefix' => 'discount'], function () {
         Route::get('/list','DiscountController@index')->name('listDis');
         Route::post('/create','DiscountController@store')->name('addDis');
@@ -117,11 +122,18 @@ Route::group(['prefix' => 'admin'], function () {
         // Route::get('/edit','FoodStoreController@edit')->name('editft');
         // Route::delete('/del', 'FoodStoreController@destroy')->name('delft');
     });
+    //Delivery
     Route::group(['prefix' => 'delivery'], function () {
         Route::get('/list','DeliveryController@index')->name('listDel');
         Route::post('/create','DeliveryController@store')->name('addDel');
         Route::get('/edit','DeliveryController@edit')->name('editDel');
         Route::delete('/del', 'DeliveryController@destroy')->name('delDel');
+    });
+    //Bill
+    Route::group(['prefix' => 'bill'], function () {
+        Route::get('/list','BillController@index')->name('listBill');
+        Route::get('/cancelBill','BillController@cancelBill')->name('cancellBill');
+        Route::get('/updateState','BillController@updateState')->name('editState');
     });
 
 });

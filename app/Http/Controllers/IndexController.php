@@ -31,7 +31,14 @@ class IndexController extends Controller
 
 //Trang chủ
     public function getIndex(){
-        return view('frontend.pages.indexFront');
+        
+        //sản phẩm mới
+        $newFood = food::orderBy('id_food', 'desc')->inRandomOrder()->limit(8)->get();
+        //Sản phẩm giảm giá
+        $discountFood = food::where('id_dis','<>' ,1)->inRandomOrder()->limit(8)->get();
+
+        return view('frontend.pages.indexFront')->with('newFood',$newFood)
+        ->with('discountFood',$discountFood);
     }
 //Sản phẩm theo loại
     public function getCategoryPages(Request $request,$id){
@@ -44,13 +51,14 @@ class IndexController extends Controller
     public function getProductPages(Request $request,$id){
 //Hiển thị số sao
 
-        // $rate = DB::table('rate')->where([['id_emp',Auth::user()->id_emp],['id_food',$id]])->first();
+        
       
         $food = food::find($id);
         //hiển thị bình luận
         $commentList = comment::where([['idfather_cmt', null],['id_food',$id]])->get();
         //hiển thị danh sách sản phẩm đề xuất
-        $relateFood = food::where('id_food','<>',$id)->inRandomOrder()->limit(4)->get();;
+        $relateFood = food::where('id_food','<>',$id)->inRandomOrder()->limit(4)->get();
+
         return view('frontend.pages.product')
         ->with('food',$food)
         ->with('relate',$relateFood)->with('comment',$commentList);
@@ -58,7 +66,7 @@ class IndexController extends Controller
 
         
     }
-
+//trang cá nhân
     public function getProfile(Request $request,$id){
         $infoMember = DB::table('emp')->where('id_emp',$id)->first(); 
 
@@ -82,7 +90,7 @@ class IndexController extends Controller
         ->with('infoBillDetail',$infoBillDetail);
     }
 
-
+//chi tiết đơn hàng
     public function getDetail(Request $request, $id){
         $infoMember = DB::table('emp')->where('id_emp',$id)->first(); 
         $infoBillDetail = DB::table('bill')
@@ -90,11 +98,12 @@ class IndexController extends Controller
         ->join('billdetail','billdetail.id_bill','=','bill.id_bill')
         ->join('food','food.id_food','=','billdetail.id_food')
         ->where('bill.id_emp',$id)->get(); 
+
         
         return view('frontend.pages.detailBill')->with('infoBillDetail',$infoBillDetail);
     }
 
-
+//danh sách comment
     public function getComment(Request $request,$id){
         
             $food = food::find($id);

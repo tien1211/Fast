@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="backend/css/font.css" type="text/css"/>
-<link href="backend/css/font-awesome.css" rel="stylesheet"> 
+<link href="backend/css/font-awesome.css" rel="stylesheet">  
 <link rel="stylesheet" href="backend/css/morris.css" type="text/css"/>
 <!-- calendar -->
 <link rel="stylesheet" href="backend/css/monthly.css">
@@ -35,6 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="backend/js/jquery2.0.3.min.js"></script>
 <script src="backend/js/raphael-min.js"></script>
 <script src="backend/js/morris.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @yield('style')
 </head>
 <body>
@@ -59,10 +60,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="backend/js/scripts.js"></script>
 <script src="backend/js/jquery.slimscroll.js"></script>
 <script src="backend/js/jquery.nicescroll.js"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="backend/js/jquery.scrollTo.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @routes
 @yield('script')
+
+<script>
+	$( function() {
+	  $( "#datepicker" ).datepicker({
+		  dateFormat:"yy-mm-dd"
+	  });
+	} );
+	$( function() {
+	  $( "#datepicker2" ).datepicker({
+		dateFormat:"yy-mm-dd"
+	  });
+	} );
+
+
+
+</script>
+
 
 	<!-- //calendar -->
 </body>

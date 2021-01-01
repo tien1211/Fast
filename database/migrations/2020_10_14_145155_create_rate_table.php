@@ -20,7 +20,6 @@ class CreateRateTable extends Migration
             $table->integer('number_rate');
             $table->tinyInteger('state_rate');
             $table->timestamps();
-
             $table->foreign('id_food')->references('id_food')->on('food')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('id_emp')->references('id_emp')->on('emp')->onUpdate('CASCADE')->onDelete('CASCADE');
         });

@@ -28,7 +28,7 @@
                <th>Content (%)</th>
                <th>Start</th>
                <th>End</th>
-               <th>State</th>
+               
                <th width="7rem">Action</th>
                
              </tr>
@@ -133,10 +133,10 @@
             ajax: "{{ route('listDis') }}",
             columns: [         
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'topic_dis', name: 'discount.topic_dis'},
-                {data: 'content_dis', name: 'discount.content_dis'},
-                {data: 'start_dis', name: 'discount.start_dis'},
-                {data: 'end_dis', name: 'discount1.end_dis'},
+                {data: 'topic_dis'},
+                {data: 'content_dis'},
+                {data: 'start'},
+                {data: 'end'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             

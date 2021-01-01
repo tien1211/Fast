@@ -27,14 +27,14 @@ class discountSeeder extends Seeder
         // ]);
 
 
-        for($i = 0 ;$i < $count;$i++){
-            array_push($arr,[
-                'topic_dis'         => $name[$i],
-                'content_dis'       => $faker->numberBetween($min=1,$max=50), 
-                'start_dis'         => $start[$i],
-                'end_dis'           => $end[$i],
-            ]);
-        }
+        // for($i = 0 ;$i < $count;$i++){
+        //     array_push($arr,[
+        //         'topic_dis'         => $name[$i],
+        //         'content_dis'       => $faker->numberBetween($min=1,$max=50), 
+        //         'start_dis'         => $start[$i],
+        //         'end_dis'           => $end[$i],
+        //     ]);
+        // }
         DB::table('discount')->insert($arr);
     }
 }

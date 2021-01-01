@@ -28,11 +28,18 @@ class DiscountController extends Controller
                     })
                     ->rawColumns(['action'])
 
-                    ->addColumn('start_dis',function(discount $discount){
-                        return $discount->start_dis->format('d-m-Y');
+                    ->addColumn('start',function(discount $discount){
+                        if($discount->start_dis){
+                            return $discount->start_dis->format('d-m-Y');
+                        }
+                        return "";
                     })
-                    ->addColumn('end_dis',function(discount $discount1){
-                        return $discount1->end_dis->format('d-m-Y');
+                    ->addColumn('end',function(discount $discount1){
+                        if($discount1->end_dis){
+                            return $discount1->end_dis->format('d-m-Y');
+                        }
+                        return "";
+                        
                     })
                     ->make(true);
         }

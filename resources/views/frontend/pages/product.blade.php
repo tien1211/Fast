@@ -135,11 +135,11 @@
                             <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
                         </p>
                             </div>
-                <p class="price"><span class="price-dc">$120.00</span></p>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until.
-                    </p>
+                            <p class="price"><span class="price-dc" ><h5 style="text-decoration: line-through;">{{number_format($food->preprice_food)}} VNĐ</h5></span></p>
+                        <p class="price"><span class="price-dc">{{number_format($food->price_food)}} VNĐ</span></p>
+                <p>{{$food->desc_food}}</p>
             <div class="row mt-4">
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <div class="form-group d-flex">
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -151,7 +151,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="w-100"></div>
                 <form action="{{route('addCart')}}" method="POST" class="addcart-form">
                     @csrf
@@ -174,7 +174,7 @@
                     </div>
                     <div class="w-100"></div>
                     <div class="col-md-12">
-                        <p style="color: #000;">600 kg available</p>
+                        <p style="color: #000;"></p>
                     </div>
             </div>
                     <p><a href="javascript:void(0);" data-id="{{$food->id_food}}" class="addcart btn btn-black py-3 px-5">Add to Cart</a></p>
