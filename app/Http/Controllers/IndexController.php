@@ -125,7 +125,7 @@ class IndexController extends Controller
 //danh sách comment
     public function getComment(Request $request,$id){
         
-            $food = food::find($id);
+            $food = food::find($id); 
             $commentList = comment::where([['idfather_cmt', null],['id_food',$id]])->get();
             return view('frontend.pages.comment')
             ->with('comment',$commentList);

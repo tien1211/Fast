@@ -24,6 +24,7 @@ Route::get('/getDetail/{id}','IndexController@getDetail')->name('getDetail');
 
 // LOGIN
 Route::get('/signinPage','AuthController@getSignIn')->name('signInPages');
+Route::get('/registerPage','AuthController@getRegister')->name('registerPages');
 Route::post('/signin','AuthController@signIn')->name('signIn');
 Route::get('/signout','AuthController@signOut')->name('signOut');
 // CART

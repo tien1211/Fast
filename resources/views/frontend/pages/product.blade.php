@@ -140,19 +140,7 @@
                         <p class="price"><span class="price-dc">{{number_format($food->price_food)}} VNĐ</span></p>
                 <p>{{$food->desc_food}}</p>
             <div class="row mt-4">
-                        <!--<div class="col-md-6">
-                            <div class="form-group d-flex">
-                                <div class="select-wrap">
-                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">Small</option>
-                                        <option value="">Medium</option>
-                                        <option value="">Large</option>
-                                        <option value="">Extra Large</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>-->
+                      
                         <div class="w-100"></div>
                 <form action="{{route('addCart')}}" method="POST" class="addcart-form">
                     @csrf
@@ -373,21 +361,13 @@
 @endsection
 @section('script')
 
-
-
     <script>
-
-
-
         
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-
-
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 //comment
 $('#saveBtn').click(function (e) {
         e.preventDefault();
@@ -419,6 +399,8 @@ $('#saveBtn').click(function (e) {
 //     $("#commentList").html(result);
 //   }});
 // });
+
+// cái đoạn t bắt load lại comment nè
 function showComment(str) {
   var xhttp;
   if (str == "") {
@@ -428,7 +410,7 @@ function showComment(str) {
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("commentList").innerHTML = this.responseText;
+        document.getElementById("commentList").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "./getComment/"+str, true);

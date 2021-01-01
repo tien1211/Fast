@@ -13,7 +13,10 @@ class AuthController extends Controller
     }
 
     public function getSignIn(){
-        return view('frontend.view.login');
+        return view('frontend.view.signin');
+    }
+    public function getRegister(){
+        return view('frontend.view.register');
     }
 
     public function signIn(Request $request){
