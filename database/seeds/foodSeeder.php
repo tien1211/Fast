@@ -26,11 +26,11 @@ class foodSeeder extends Seeder
         for($i=0;$i<count($sandw);$i++){
             array_push($arr,[
                 'id_cate'       =>  1,
-                'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
+                'id_dis'        =>  1,
                 'name_food'     =>  $sandw[$i],
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_sw-3000,
-                'preprice_food' =>  $pric_sw,
+                'preprice_food' =>  null,
                 'img_food'      =>  'SW'.$i,
                 'state_food'    =>  1
             ]);
@@ -39,11 +39,11 @@ class foodSeeder extends Seeder
         for($j=0;$j<count($drink);$j++){
             array_push($arr,[
                 'id_cate'       =>  2,
-                'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
+                'id_dis'        =>  1,
                 'name_food'     =>  $drink[$j],
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr - 3000,
-                'preprice_food' =>  $pric_dr,
+                'preprice_food' =>  null,
                 'img_food'      =>  'DR'.$j,
                 'state_food'    =>  1
             ]);
@@ -53,7 +53,7 @@ class foodSeeder extends Seeder
         for($k=0;$k<count($desert);$k++){
             array_push($arr,[
                 'id_cate'       =>  3,
-                'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
+                'id_dis'        =>  $faker->numberBetween($min=2,$max=5),
                 'name_food'     =>  $desert[$k],
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr - 3000,
@@ -67,7 +67,7 @@ class foodSeeder extends Seeder
         for($l=0;$l<count($ff);$l++){
             array_push($arr,[
                 'id_cate'       =>  4,
-                'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
+                'id_dis'        =>  $faker->numberBetween($min=2,$max=5),
                 'name_food'     =>  $ff[$l],
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr - 3000,
@@ -79,11 +79,11 @@ class foodSeeder extends Seeder
         for($v=0;$v<count($salad);$v++){
             array_push($arr,[
                 'id_cate'       =>  5,
-                'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
+                'id_dis'        =>  1,
                 'name_food'     =>  $salad[$v],
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_dr - 3000,
-                'preprice_food' =>  $pric_dr,
+                'preprice_food' =>  null,
                 'img_food'      =>  'SL'.$v,
                 'state_food'    =>  1
             ]);
@@ -91,7 +91,7 @@ class foodSeeder extends Seeder
         for($cb=0;$cb<count($combo);$cb++){
             array_push($arr,[
                 'id_cate'       =>  6,
-                'id_dis'        =>  $faker->numberBetween($min=1,$max=5),
+                'id_dis'        =>  $faker->numberBetween($min=2,$max=5),
                 'name_food'     =>  $combo[$cb],
                 'desc_food'     =>  '',
                 'price_food'    =>  $pric_cb - 15000,

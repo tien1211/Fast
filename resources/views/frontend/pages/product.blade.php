@@ -121,18 +121,19 @@
                 <h3>{{$food->name_food}}</h3>
                 <div class="rating d-flex">
                         <p class="text-left mr-4">
-                            <a href="#"><span class="ion-ios-star" style="color: orange"></span></a>
-                            <a href="#"><span class="ion-ios-star-outline"></span></a>
-                            <a href="#"><span class="ion-ios-star-outline"></span></a>
-                            
-                            <a href="#"><span class="ion-ios-star-outline"></span></a>
-                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                            @for($i = 1; $i<=5;$i++)
+                            @php
+                                 $style = ($i > $rate[$food->id_food])  ? "class='ion-ios-star-outline'" : "class='ion-ios-star' style='color: #ffcc00;'"   ; 
+                               
+                            @endphp
+                            <a href="#"><span {!!$style!!}></span></a>
+                            @endfor      
                         </p>
                         <p class="text-left mr-4">
-                            <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
+                            <a href="#" class="mr-2" style="color: #000;">{{$countRating}} <span style="color: #bbb;">Rating</span></a>
                         </p>
                         <p class="text-left">
-                            <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
+                            {{-- <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a> --}}
                         </p>
                             </div>
                             <p class="price"><span class="price-dc" ><h5 style="text-decoration: line-through;">{{number_format($food->preprice_food)}} VNĐ</h5></span></p>

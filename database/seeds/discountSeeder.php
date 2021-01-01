@@ -21,20 +21,22 @@ class discountSeeder extends Seeder
        
 
 
-        // array_push($arr,[
-        //     'topic_dis'=> 'Không có khuyến mãi',
-        //     'content_dis'=> 0
-        // ]);
+        array_push($arr,[
+            'topic_dis'=> 'Không có khuyến mãi',
+            'content_dis'=> 0,
+            'start_dis' => null,
+            'end_dis' => null,
+        ]);
 
 
-        // for($i = 0 ;$i < $count;$i++){
-        //     array_push($arr,[
-        //         'topic_dis'         => $name[$i],
-        //         'content_dis'       => $faker->numberBetween($min=1,$max=50), 
-        //         'start_dis'         => $start[$i],
-        //         'end_dis'           => $end[$i],
-        //     ]);
-        // }
+        for($i = 0 ;$i < $count;$i++){
+            array_push($arr,[
+                'topic_dis'         => $name[$i],
+                'content_dis'       => $faker->numberBetween($min=1,$max=15), 
+                'start_dis'         => $start[$i],
+                'end_dis'           => $end[$i],
+            ]);
+        }
         DB::table('discount')->insert($arr);
     }
 }

@@ -17,7 +17,7 @@ class rate extends Model
         'state_rate'
     ];
 
-    protected $guarded = ['*'];
+    protected $guarded = ['id_rate'];
     const     CREATED_AT    = 'created_at';
     const     UPDATED_AT    = 'updated_at';
     protected $dates        = ['created_at', 'updated_at'];

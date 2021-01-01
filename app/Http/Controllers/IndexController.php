@@ -8,6 +8,7 @@ use App\category;
 use App\discount;
 use App\emp;
 use App\comment;
+use App\rate;
 use DB;
 use Auth;
 use Carbon\Carbon;
@@ -31,14 +32,17 @@ class IndexController extends Controller
 
 //Trang chủ
     public function getIndex(){
+        //sản phẩm nổi bật
         
+        $featured = food::join('rate','rate.id_food','=','food.id_food')->where('rate.number_rate','>',3)->inRandomOrder()->limit(8)->get();
         //sản phẩm mới
         $newFood = food::orderBy('id_food', 'desc')->inRandomOrder()->limit(8)->get();
         //Sản phẩm giảm giá
         $discountFood = food::where('id_dis','<>' ,1)->inRandomOrder()->limit(8)->get();
 
         return view('frontend.pages.indexFront')->with('newFood',$newFood)
-        ->with('discountFood',$discountFood);
+        ->with('discountFood',$discountFood)
+        ->with('featured',$featured);
     }
 //Sản phẩm theo loại
     public function getCategoryPages(Request $request,$id){
@@ -47,13 +51,26 @@ class IndexController extends Controller
         $productPages = food::where('id_cate','=',$id)->select('*')->get();
         return view('frontend.pages.category')->with('food',$productPages);
     }
+
+//tính số sao
+    public function getRating($id){
+        return (DB::table('rate')->where('id_food', $id)->avg('number_rate'));
+    }
 //Trang Sản phẩm 
     public function getProductPages(Request $request,$id){
 //Hiển thị số sao
-
+        $allFood = food::all();
+        $rating = [];
+        //đếm số người đánh giá
+        $count = DB::table('rate')->where('id_food', $id)->count();
+        foreach($allFood as $key => $product){
+            $rating[$product->id_food] = $this->getRating($product->id_food);
+        }
         
+       
       
         $food = food::find($id);
+
         //hiển thị bình luận
         $commentList = comment::where([['idfather_cmt', null],['id_food',$id]])->get();
         //hiển thị danh sách sản phẩm đề xuất
@@ -61,6 +78,8 @@ class IndexController extends Controller
 
         return view('frontend.pages.product')
         ->with('food',$food)
+        ->with('rate',$rating)
+        ->with('countRating',$count)
         ->with('relate',$relateFood)->with('comment',$commentList);
         // ->with('rate',$rate);
 
