@@ -136,9 +136,14 @@
                             {{-- <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a> --}}
                         </p>
                             </div>
-                            <p class="price"><span class="price-dc" ><h5 style="text-decoration: line-through;">{{number_format($food->preprice_food)}} VNĐ</h5></span></p>
-                        <p class="price"><span class="price-dc">{{number_format($food->price_food)}} VNĐ</span></p>
-                <p>{{$food->desc_food}}</p>
+                            @if ($food->preprice_food == null)
+                                <p class="price"><span class="price-dc">{{number_format($food->price_food)}} VNĐ</span></p>
+                            @else
+                                <p class="price"><span class="price-dc" ><h5 style="text-decoration: line-through;">{{number_format($food->preprice_food)}} VNĐ</h5></span></p>
+                                <p class="price"><span class="price-dc">{{number_format($food->price_food)}} VNĐ</span></p>
+                            @endif
+                            
+                        <p>{{$food->desc_food}}</p>
             <div class="row mt-4">
                       
                         <div class="w-100"></div>
@@ -151,8 +156,8 @@
                                 <i class="ion-ios-remove"></i>
                             </button>
                         </span>
-
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                        
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number"  value="1" min="1" max="100">
                         
                         <span class="input-group-btn ml-2">
                             <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
@@ -236,9 +241,12 @@
             <h5>{{$item->emp->username}}</h5>
             
             <p>{{$item->content_cmt}}</p>
-            <span class="time-right">{{date(' H:m:s d-m-Y ',strtotime($item->created_at))}}</span>
-            <span><a href="#">Reply</a> &nbsp; &nbsp; 
-            <a href="{{route('delComment',['id'=>$item->id_cmt])}}">Delete</a> &nbsp; &nbsp; <a href="" data-toggle="modal" data-target="#myModal">Update</a></span>
+            <span class="time-right">{{date(' h:i:s d-m-Y ',strtotime($item->created_at))}}</span>
+            <span>&nbsp; &nbsp; 
+                @if ($item->emp->username == $auth->username)
+                <a href="{{route('delComment',['id'=>$item->id_cmt])}}">Delete</a> &nbsp; &nbsp; <a href="" data-toggle="modal" data-target="#myModal">Update</a></span>
+                @endif
+            
             @if ($item->replies->count() > 0)
                 @foreach ($item->replies as $rep)
         </div>
@@ -306,7 +314,7 @@
           </form>
         
         </div>
-</div>
+    </div>
 
 
 
@@ -378,29 +386,17 @@ $('#saveBtn').click(function (e) {
           dataType: 'JSON',
           success: function (data) {
             console.log(data);
-            alert(data.message);
+
           },
           error: function (data) {
               console.log(data);
-              alert(data.message)
+             
           }
         });
     });
 
-
-
 //loadcomment
 
-
-
-
-// $("#saveBtn").click(function(){
-//   $.ajax({url: "./getComment/"+"{{$food->id_f}}", success: function(result){
-//     $("#commentList").html(result);
-//   }});
-// });
-
-// cái đoạn t bắt load lại comment nè
 function showComment(str) {
   var xhttp;
   if (str == "") {
@@ -418,9 +414,7 @@ function showComment(str) {
 }
 
 
-//shoping cart
-
-        
+//shoping cart   
         $('.addcart').click(function(){
             $('.addcart-form').submit();
         });

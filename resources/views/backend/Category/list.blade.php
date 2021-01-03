@@ -120,37 +120,37 @@
 
 
         $('body').on('click', '.editProduct', function () {
-        var id_cate = $(this).data('id');
-          $.get("{{ route('editCate') }}",{ id_cate: id_cate }, function (data) {
-          $('#modelHeading').html("Edit Category");
-          $('#saveBtn').val("edit-category");
-          $('#ajaxModel').modal('show');
-          $('#id_cate').val(data.id_cate);
-          $('#name_cate').val(data.name_cate);
-          
-      })
-   });
-
-
-        $('#saveBtn').click(function (e) {
-        e.preventDefault();
-        $(this).html('Sending..');
-    
-        $.ajax({
-          data: $('#productForm').serialize(),
-          url: "{{ route('addCate') }}",
-          type: "POST",
-          dataType: 'json',
-          success: function (data) {
-            $('#productForm').trigger("reset");
-            $('#ajaxModel').modal('hide');
-            table.ajax.reload();
-          },
-          error: function (data) {
-              console.log('Error:', data);
-              $('#saveBtn').html('Save Changes');
-          }
+          var id_cate = $(this).data('id');
+            $.get("{{ route('editCate') }}",{ id_cate: id_cate }, function (data) {
+            $('#modelHeading').html("Edit Category");
+            $('#saveBtn').val("edit-category");
+            $('#ajaxModel').modal('show');
+            $('#id_cate').val(data.id_cate);
+            $('#name_cate').val(data.name_cate);
+            
+            })
         });
+
+
+    $('#saveBtn').click(function (e) {
+    e.preventDefault();
+    $(this).html('Sending..');
+    
+      $.ajax({
+        data: $('#productForm').serialize(),
+        url: "{{ route('addCate') }}",
+        type: "POST",
+        dataType: 'json',
+        success: function (data) {
+          $('#productForm').trigger("reset");
+          $('#ajaxModel').modal('hide');
+          table.ajax.reload();
+        },
+        error: function (data) {
+            console.log('Error:', data);
+            $('#saveBtn').html('Save Changes');
+        }
+      });
     });
 
     $('body').on('click', '.deleteProduct', function () {
@@ -171,7 +171,7 @@
           },
           
           error: function (data) {
-              console.log('Error:', data);
+              // console.log('Error:', data);
           }
       });
      }else{

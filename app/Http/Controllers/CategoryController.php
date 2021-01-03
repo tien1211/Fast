@@ -16,23 +16,23 @@ class CategoryController extends Controller
         if ($request->ajax()) {
             $data = category::latest()->get();
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    
-                    ->addColumn('action', function($row){
-   
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_cate.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
-   
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_cate.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
-    
-                            return $btn;
-                    })
-                    
-                    ->rawColumns(['action']) ->make(true);
-                }
+                ->addIndexColumn()
+                
+                ->addColumn('action', function($row){
+
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_cate.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+
+                        $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id_cate.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+
+                        return $btn;
+                })
+                
+                ->rawColumns(['action']) ->make(true);
+        }
               
-                return view('backend.Category.list');
+        return view('backend.Category.list');
         
-            }
+    }
     
 
     /**

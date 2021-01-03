@@ -20,8 +20,6 @@ class FoodController extends Controller
 
     }
 
-
-
     public function index(Request $request){
         if ($request->ajax()) {
             $data = food::latest()->get();

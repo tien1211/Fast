@@ -104,15 +104,15 @@
                 
                             <div class="form-group">
                                 <label for="">Name</label>
-                                <input type="text" name="name_bill" class="form-control text-left px-3" value="1" required placeholder="EX: Hồng Anh Tiến">
+                                <input type="text" name="name_bill" class="form-control text-left px-3" value="" required placeholder="EX: Hồng Anh Tiến">
                             </div>
                             <div class="form-group">
                                 <label for="country">Address</label>
-                                <input type="text" name="address_bill" class="form-control text-left px-3" value="1" required placeholder="EX: 3/2 Ninh Kiều, Thành Phố Cần Thơ">
+                                <input type="text" name="address_bill" class="form-control text-left px-3" value="" required placeholder="EX: 3/2 Ninh Kiều, Thành Phố Cần Thơ">
                             </div>
                             <div class="form-group">
                                 <label for="country">Email</label>
-                                <input type="text" name="mail_bill" class="form-control text-left px-3" value="1" required placeholder="EX: tienb1607034@gmail.com">
+                                <input type="text" name="mail_bill" class="form-control text-left px-3" value="" required placeholder="EX: tienb1607034@gmail.com">
                             </div>
                         
                     </div>

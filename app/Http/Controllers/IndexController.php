@@ -58,7 +58,7 @@ class IndexController extends Controller
     }
 //Trang Sản phẩm 
     public function getProductPages(Request $request,$id){
-//Hiển thị số sao
+        //Hiển thị số sao
         $allFood = food::all();
         $rating = [];
         //đếm số người đánh giá
@@ -66,8 +66,6 @@ class IndexController extends Controller
         foreach($allFood as $key => $product){
             $rating[$product->id_food] = $this->getRating($product->id_food);
         }
-        
-       
       
         $food = food::find($id);
 
@@ -81,8 +79,6 @@ class IndexController extends Controller
         ->with('rate',$rating)
         ->with('countRating',$count)
         ->with('relate',$relateFood)->with('comment',$commentList);
-        // ->with('rate',$rate);
-
         
     }
 //trang cá nhân

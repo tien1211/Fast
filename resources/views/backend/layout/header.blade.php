@@ -3,7 +3,7 @@
     <!--logo start-->
     <div class="brand">
         <a href="index.html" class="logo">
-            VISITORS
+            FASTFOOD
         </a>
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars"></div>
