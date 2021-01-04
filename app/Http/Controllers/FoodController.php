@@ -61,24 +61,6 @@ class FoodController extends Controller
 
 
     public function addFood(Request $request){
-        
-       
-
-        
-
-
-        if($request->id_dis = 1){
-            food::updateOrCreate(
-                ['id_food'          => $request->id_food],
-                ['id_cate'          => $request->id_cate,
-                'id_dis'           => $request->id_dis,
-                'name_food'        => $request->name_food,
-                'desc_food'        => $request->desc_food,
-                'price_food'       => $request->price_food,
-                'img_food'         => $img, 
-                'state_food'       => 1]);
-            return response()->json(['success'=> 'Saved Successfully!!']);
-        }else{
             food::updateOrCreate(
                 ['id_food'          => $request->id_food],
                 ['id_cate'          => $request->id_cate,
@@ -87,10 +69,10 @@ class FoodController extends Controller
                 'desc_food'        => $request->desc_food,
                 'price_food'       => $request->price_food,
                 'preprice_food'    => $request->preprice_food,
-                'img_food'         => $img,
+                'img_food'         => null, 
                 'state_food'       => 1]);
             return response()->json(['success'=> 'Saved Successfully!!']);
-        }   
+        
     }
 
 

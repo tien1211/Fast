@@ -170,6 +170,10 @@
 				<br>
 				<br>
 				<br>
+
+				@if ($featured->count()<1)
+					
+				@else
 				{{-- Sản phẩm nôi bật --}}
 				<div class="container">
 					<div class="row justify-content-center mb-3 pb-3">
@@ -236,7 +240,9 @@
 						</div>
 					  @endforeach
 					</div>
-				</div>
+				</div>	
+				@endif
+				
 				
 
 				

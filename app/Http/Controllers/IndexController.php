@@ -34,11 +34,11 @@ class IndexController extends Controller
     public function getIndex(){
         //sản phẩm nổi bật
         
-        $featured = food::join('rate','rate.id_food','=','food.id_food')->where('rate.number_rate','>',3)->inRandomOrder()->limit(8)->get();
+        $featured = food::join('rate','rate.id_food','=','food.id_food')->where('rate.number_rate','>',3)->limit(8)->get();
         //sản phẩm mới
-        $newFood = food::orderBy('id_food', 'desc')->inRandomOrder()->limit(8)->get();
+        $newFood = food::orderBy('id_food', 'desc')->limit(8)->get();
         //Sản phẩm giảm giá
-        $discountFood = food::where('id_dis','<>' ,1)->inRandomOrder()->limit(8)->get();
+        $discountFood = food::where('id_dis','<>' ,1)->limit(8)->get();
 
         return view('frontend.pages.indexFront')->with('newFood',$newFood)
         ->with('discountFood',$discountFood)
@@ -97,7 +97,7 @@ class IndexController extends Controller
         ->join('billdetail','billdetail.id_bill','=','bill.id_bill')
         ->join('food','food.id_food','=','billdetail.id_food')
         ->where('bill.id_emp',$id)->get();   
-    // return dd($infoBill);
+    //  return dd($infoBillDetail);
 
 
         return view('frontend.pages.profile')->with('infoMember',$infoMember)
@@ -106,15 +106,14 @@ class IndexController extends Controller
     }
 
 //chi tiết đơn hàng
-    public function getDetail(Request $request, $id){
+    public function getDetail(Request $request){
+        $id = $request->id_bill;
         $infoMember = DB::table('emp')->where('id_emp',$id)->first(); 
         $infoBillDetail = DB::table('bill')
         ->join('emp','emp.id_emp','=','bill.id_emp')
         ->join('billdetail','billdetail.id_bill','=','bill.id_bill')
         ->join('food','food.id_food','=','billdetail.id_food')
-        ->where('bill.id_emp',$id)->get(); 
-
-        
+        ->where([['bill.id_emp',Auth::user()->id_emp],['bill.id_bill',$id]])->get(); 
         return view('frontend.pages.detailBill')->with('infoBillDetail',$infoBillDetail);
     }
 

@@ -26,6 +26,15 @@ class empSeeder extends Seeder
             'per_emp'    => 0,
             'state_emp'    => 1,
         ]);
+        array_push($arr,[
+            'username'      => 'anhtien',
+            'password'      => bcrypt('123'),
+            'name_emp'      => 'Hong Anh Tien',
+            'birth_emp'     => '1998-11-12',
+            'gender_emp'    => 0,
+            'per_emp'    => 1,
+            'state_emp'    => 1,
+        ]);
 
         for($i = 0;$i<=40;$i++){
             array_push($arr,[

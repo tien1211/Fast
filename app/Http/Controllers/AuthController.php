@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
 use Session;
+use Redirect;
 class AuthController extends Controller
 {
     public function username(){
@@ -15,8 +16,34 @@ class AuthController extends Controller
     public function getSignIn(){
         return view('frontend.view.signin');
     }
-    public function getRegister(){
-        return view('frontend.view.register');
+    public function getChangePass(){
+        return view('frontend.view.changePass');
+    }
+
+    public function postChangePass(Request $request, $id){
+        $usr = emp::find($id);
+
+
+                $arr = [
+                        'username'  => $usr->username,
+                        'password'      => $request->old_password
+                ];
+
+           if (Auth::attempt($arr)) {
+                    $usr->password =bcrypt($request->new_password);
+
+                    $usr->save();
+
+                    Session::flash('alert-success', 'Đổi mật khẩu thành công!!');
+                    return redirect::back();
+           }else{
+                    Session::flash('alert-warning', 'Đổi Mật Khẩu Thất Bại!!');
+                    return redirect::back();
+           }
+
+
+
+
     }
 
     public function signIn(Request $request){
@@ -29,7 +56,7 @@ class AuthController extends Controller
         if (Auth::attempt($arr)) {
             Cart::instance('cart')->restore(strval(Auth::user()->id_emp));
             Cart::instance('wishlist')->restore(Auth::user()->username);
-            return redirect()->route("index"); 
+            return redirect()->route("adminIndex"); 
         } else {
             return redirect()->back()
             ->withInput()->with("error", "Sai tài khoản hoặc mật khẩu");

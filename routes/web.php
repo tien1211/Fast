@@ -20,11 +20,13 @@ Route::get('/category/{id}','IndexController@getCategoryPages')->name('categoryP
 Route::get('/product/{id}','IndexController@getProductPages')->name('productPages');
 Route::get('/getComment/{id}','IndexController@getComment')->name('getComment');
 Route::get('/getProfile/{id}','IndexController@getProfile')->name('getProfile');
-Route::get('/getDetail/{id}','IndexController@getDetail')->name('getDetail');
+Route::get('/getDetail','IndexController@getDetail')->name('getDetail');
 
 // LOGIN
 Route::get('/signinPage','AuthController@getSignIn')->name('signInPages');
 Route::get('/registerPage','AuthController@getRegister')->name('registerPages');
+Route::get('/changePass','AuthController@getChangePass')->name('changePass');
+Route::post('/changePass/{id}','AuthController@postChangePass')->name('prosPass');
 Route::post('/signin','AuthController@signIn')->name('signIn');
 Route::get('/signout','AuthController@signOut')->name('signOut');
 // CART
@@ -60,7 +62,7 @@ Route::post('/upRating','CmtRatingController@postRating')->name('rating');
 
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'adminLogin'], function () {
 
     // Route::get('/dashboard',function(){
     //     return view('backend.layout.master');

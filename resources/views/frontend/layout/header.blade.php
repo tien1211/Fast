@@ -5,14 +5,14 @@
                 <div class="row d-flex">
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                        <span class="text">+ 1235 2355 98</span>
+                        <span class="text">+84 354546137</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                        <span class="text">youremail@email.com</span>
+                        <span class="text">hatien.1211@gmail.com</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+                        <span class="text">TIỂU LUẬN TỐT NGHIỆP &amp; HỒNG ANH TIẾN B1607034</span>
                     </div>
                 </div>
             </div>
@@ -36,25 +36,32 @@
               @foreach ($category as $cate)
           <a class="dropdown-item" href="{{route('categoryPages',['id'=>$cate->id_cate])}}">{{$cate->name_cate}} </a>
               @endforeach
-            {{-- <a class="dropdown-item" href="shop.html">Shop </a>
-            <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-            <a class="dropdown-item" href="product-single.html">Single Product</a>
-            <a class="dropdown-item" href="cart.html">Cart</a>
-            <a class="dropdown-item" href="checkout.html">Checkout</a> --}}
+            
           </div>
         </li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          {{-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> --}}
           <li class="nav-item"><a href="{{route('wishlistPage')}}" class="nav-link" >Wishlist  [<span id="wishlist">{{ Cart::instance('wishlist')->count() }}</span>]</a></li>
           @if (!isset($auth))
           <li class="nav-item"><a href="{{route('signInPages')}}" class="nav-link">Sign In</a></li>
+          @elseif($auth->per_emp == 0)
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$auth->name_emp}}</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="{{route('getProfile',['id'=>$auth->id_emp])}}">Profile</a>
+                <a class="dropdown-item" href="{{route('changePass')}}">Change Password</a>
+              <a class="dropdown-item" href="{{route('adminIndex')}}">Back Admin</a>
+              <a class="dropdown-item" href="{{route('signOut')}}">Sign out</a>
+              </div>
+            </li>
+
           @else
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$auth->name_emp}}</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
               <a class="dropdown-item" href="{{route('getProfile',['id'=>$auth->id_emp])}}">Profile</a>
-              <a class="dropdown-item" href="wishlist.html">Change Password</a>
+              <a class="dropdown-item" href="{{route('changePass')}}">Change Password</a>
             <a class="dropdown-item" href="{{route('signOut')}}">Sign out</a>
             </div>
           </li>

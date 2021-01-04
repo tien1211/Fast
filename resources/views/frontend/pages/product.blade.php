@@ -233,8 +233,7 @@
         
  </div>
 @endif
-    
- 
+
     <div id="commentList" style="overflow-y: scroll; height: 20rem;">
         @foreach ($comment as $item)
         <div class="container1">
@@ -289,12 +288,11 @@
                     </div>
                     </div>
                 </div>
-
-
-
-
         @endforeach
     </div>
+
+ 
+   
   
     <div class="row block-9">
         <div class="col-md-12 order-md-last d-flex">
@@ -430,7 +428,7 @@ function showComment(str) {
                 loadCountCart(data.count)
                 alert(data.success);
             }).error(function(e){
-                alert("thất bại")
+                alert("Thất bại")
                 console.log(e);
             });
         });

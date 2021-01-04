@@ -16,6 +16,7 @@
               <div class="row">
               <div class="col-md-12 ftco-animate">
                   <div class="cart-list">
+                    @if ($cartContent->count()>0)
                       <table class="table">
                           <thead class="thead-primary">
                             <tr class="text-center">
@@ -29,35 +30,35 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($cartContent as $itemCart)
-                            <tr class="text-center" id="product_{{ $itemCart->id }}">
-                              <td class="product-remove"><a class="cart_delete" data-product-id="{{ $itemCart->id }}" data-id="{{ $itemCart->rowId }}"><span class="ion-ios-close"></span></a></td>
-                              
-                              <td class="image-prod"><div class="img" style="background-image:url(frontend/images/{{$itemCart->options->image}}.jpg);"></div></td>
-                              
-                              <td class="product-name">
-                                  <h3>{{$itemCart->name}}</h3>
-                                  <p>{{$itemCart->options->desc}}</p>
-                              </td>
-                              
-                              <td class="price">{{number_format($itemCart->price)}}</td>
-                              
+                            
+                                @foreach ($cartContent as $itemCart)
+                                <tr class="text-center" id="product_{{ $itemCart->id }}">
+                                    <td class="product-remove"><a class="cart_delete" data-product-id="{{ $itemCart->id }}" data-id="{{ $itemCart->rowId }}"><span class="ion-ios-close"></span></a></td>                             
+                                    <td class="image-prod"><div class="img" style="background-image:url(frontend/images/{{$itemCart->options->image}}.jpg);"></div></td>
+                                    <td class="product-name">
+                                        <a href="{{route('productPages',['id'=>$itemCart->id])}}"><h3>{{$itemCart->name}}</h3></a>
+                                        <p>{{$itemCart->options->desc}}</p>
+                                    </td>
+                                    <td class="price">{{number_format($itemCart->price)}}</td>
+                                    <form action="{{ route('updateCart') }}" method="post" class="form-update-cart">
+                                        @csrf
+                                        <input type="hidden" name="rowId" value="{{ $itemCart->rowId }}">
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                <input type="number" name="quantity" id="quantity_{{$itemCart->id}}" class="quantity form-control input-number" value="{{$itemCart->qty}}" min="1" max="100">
+                                            </div>
+                                        </td>
+                                    
+                                        <td class="total cart_total_price" >{{number_format($itemCart->priceTotal)}} VNĐ</td>
+                                        <td> <button type="submit" href="javascript:void(0);" data-id="{{ $itemCart->id }} " class="cart_update btn btn-warning py-3 px-4">Update</button> </td>
+                                    </form>
 
-                              <form action="{{ route('updateCart') }}" method="post" class="form-update-cart">
-                                @csrf
-                                <input type="hidden" name="rowId" value="{{ $itemCart->rowId }}">
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="number" name="quantity" id="quantity_{{$itemCart->id}}" class="quantity form-control input-number" value="{{$itemCart->qty}}" min="1" max="100">
-                                    </div>
-                                </td>
-                              
-                                <td class="total cart_total_price" >{{number_format($itemCart->priceTotal)}} VNĐ</td>
-                                <td> <button type="submit" href="javascript:void(0);" data-id="{{ $itemCart->id }} " class="cart_update btn btn-warning py-3 px-4">Update</button> </td>
-                            </form>
-
-                        </tr><!-- END TR-->
-                            @endforeach
+                                </tr><!-- END TR-->
+                                @endforeach
+                            @else
+                                <h5>Hiện chưa có sản phẩm</h5>
+                            @endif
+                            
                            <!-- END TR-->
                           </tbody>
                         </table>
